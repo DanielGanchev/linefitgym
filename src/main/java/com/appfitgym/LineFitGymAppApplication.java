@@ -1,4 +1,4 @@
-package com.appfitgym.linefitgym;
+package com.appfitgym;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

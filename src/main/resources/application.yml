@@ -1,0 +1,41 @@
+logging:
+    level:
+        blog: WARN
+        org: WARN
+        org.hibernate.SQL: off
+LineFitGymApp:
+    default:
+        admin:
+            pass: ${DEFAULT_ADMIN_PASS:topsecret}
+    remember:
+        me:
+            key: ${REMEMBER_ME_KEY:topsecret}
+spring:
+    datasource:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        password: ${MYSQL_PASSWORD:1234}
+        url: jdbc:mysql://localhost:3306/onlinefitgym_db?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
+        username: ${MYSQL_USER:root}
+    jpa:
+        hibernate:
+            ddl-auto: update
+        open-in-view: false
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQLDialect
+                format_sql: true
+
+
+    mvc:
+        hiddenmethod:
+            filter:
+                enabled: true
+
+app:
+    jwtSecret: ${JWT_SECRET:yourSecretKey}
+    jwtExpirationInMs: ${JWT_EXPIRATION_IN_MS:3600000}
+
+rapidapi:
+    key: 284aa20f03msh1e37145483b08efp1c0512jsnde7b410c8867
+    host: wft-geo-db.p.rapidapi.com
+
