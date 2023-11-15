@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:insert="~{fragments/head-register}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/register-form.css}">
+
+</head>
+
+<body>
+
+<!-- ***** Preloader Start ***** -->
+<div th:replace="~{fragments/preloader}">
+
+
+</div>
+<!-- ***** Preloader End ***** -->
+
+<!-- ***** Header Area Start ***** -->
+<header  th:replace="~{fragments/navbar}">
+
+</header>
+
+
+<div class="register-form" id="container">
+    <div class="form-container sign-up">
+        <form    th:action="@{/users/register}"
+                 th:object="${userRegisterBindingModel}"
+                 th:method="POST">
+            <h1>Create Account</h1>
+
+            <div th:if="${hasRegistrationError}" class="text-danger">Registration Error occurred</div>
+
+            <input type="text" class="form-control" id="username" placeholder="Username"
+                   th:field="*{username}"
+                   th:errorclass="bg-danger" />
+            <small th:if="${#fields.hasErrors('username')}"
+                   th:errors="*{username}"
+                   class="text-danger">Username error message</small>
+            <input type="email" class="form-control" id="email" placeholder="Email"
+                   th:field="*{email}"
+                   th:errorclass="bg-danger"/>
+            <small th:if="${#fields.hasErrors('email')}"
+                   th:errors="*{email}"
+                   class="text-danger">Email error message</small>
+            <input type="text" class="form-control" id="firstName" placeholder="First Name"
+                   th:field="*{firstName}"
+                   th:errorclass="bg-danger" />
+            <small th:if="${#fields.hasErrors('firstName')}"
+                   th:errors="*{firstName()}"
+                   class="text-danger">First Name error message</small>
+
+            <input type="text" class="form-control" id="lastName" placeholder="Last Name"
+                   th:field="*{lastName}"
+                   th:errorclass="bg-danger" />
+            <small th:if="${#fields.hasErrors('lastName')}"
+                   th:errors="*{lastName}"
+                   class="text-danger">Last Name error message</small>
+            <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number"
+                   th:field="*{phoneNumber}"
+                   th:errorclass="bg-danger" />
+            <small th:if="${#fields.hasErrors('phoneNumber')}"
+                   th:errors="*{phoneNumber}"
+                   class="text-danger">Phone Number error message</small>
+            <select id="countryId"
+                   th:field="*{countryId}"
+                    th:errorclass="bg-danger">
+                <option value="">Select a country</option>
+                <th:block th:each="country: ${countries}">
+                    <option th:value="${country.id}" th:text="${country.name}" />
+                </th:block>
+            </select>
+            <small  th:if="${#fields.hasErrors('countryId')}"
+                    th:errors="*{countryId}"
+
+                    class="text-danger">Language error message</small>
+
+            <!-- City dropdown -->
+            <select id="cityId" name="cityId" th:errorclass="is-invalid">
+                <option value="">Select a city</option>
+                <th:block th:each="city : ${cities}">
+                    <option th:value="${city.id}" th:text="${city.name}" />
+                </th:block>
+            </select>
+
+            <select id="sexEnums"
+                    th:field="*{sexEnum}"
+                    th:errorclass="is-invalid">
+            <option value="">Select a sex</option>
+                <th:block th:each="sexEnum : ${sexEnums}">
+                <option th:value="${sexEnum}" th:text="${sexEnum}" />
+                </th:block>
+
+            </select>
+
+            <select id="roleEnum" th:field="*{role}" th:errorclass="is-invalid">
+                <option value="">Select a role</option>
+                <th:block th:each="role : ${roles}">
+                    <option th:value="${role}" th:text="${role}" />
+                </th:block>
+            </select>
+
+
+            <input type="password" class="form-control" id="password" placeholder="Password"
+                   th:field="*{password}"
+                   th:errorclass="bg-danger"/>
+            <small th:if="${#fields.hasErrors('password')}"
+                   th:errors="*{password}"
+                   class="text-danger">Password error message</small>
+            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password"
+                   th:field="*{confirmPassword}"
+                   th:classappend="${#fields.hasErrors('password')} ? 'bg-danger'"/>
+            <button>Sign Up</button>
+        </form >
+    </div>
+    <div class="form-container sign-in">
+        <form th:action="@{/users/login}" method="post">
+            <h1>Sign In</h1>
+            <input type="text" placeholder="username" th:name="username">
+            <input type="password" placeholder="Password" th:name="password">
+            <button type="submit">Sign In</button>
+        </form>
+
+    </div>
+    <div class="toggle-container">
+        <div class="toggle">
+            <div class="toggle-panel toggle-left">
+                <h1>Welcome Back!</h1>
+                <p>Enter your personal details to use all of site features</p>
+                <button class="hidden" id="login">Sign In</button>
+            </div>
+            <div class="toggle-panel toggle-right">
+                <h1>Hello, Friend!</h1>
+                <p>Register with your personal details to use all of site features</p>
+                <button class="hidden" id="register">Register</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{fragments/footer}">
+
+</footer>
+
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="/jquery/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+
+<script src="/js/isotope.min.js"></script>
+<script src="/js/owl-carousel.js"></script>
+
+<script src="/js/custom.js"></script>
+<script src="/js/popup.js"></script>
+<script src="/js/script.js"></script>
+</body>
+</html>

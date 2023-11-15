@@ -11,6 +11,9 @@ LineFitGymApp:
         me:
             key: ${REMEMBER_ME_KEY:topsecret}
 spring:
+    application:
+        name: LineFitGymApp
+
     datasource:
         driverClassName: com.mysql.cj.jdbc.Driver
         password: ${MYSQL_PASSWORD:1234}
@@ -31,7 +34,13 @@ spring:
             filter:
                 enabled: true
 
-jwt.secret: ${JWT_SECRET:secret}
+app:
+    token:
+        secretKey: ${TOKEN_SECRET:topsecret}
+
+
+
+
 
 
 
