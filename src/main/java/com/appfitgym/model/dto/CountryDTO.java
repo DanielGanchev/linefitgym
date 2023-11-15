@@ -1,49 +1,51 @@
 package com.appfitgym.model.dto;
 
 
+import com.appfitgym.model.entities.City;
+
 import java.util.List;
 
 public class CountryDTO  {
 
-    private String code;
-    private List<String> currencyCodes;
-    private String name;
-    private String wikiDataId;
+    private String iso2;
+    private String iso3;
+    private String country;
+    private List<String> cities;
 
-
-    public String getName() {
-        return name;
+    public String getIso2() {
+        return iso2;
     }
 
-    public CountryDTO setName(String name) {
-        this.name = name;
+    public CountryDTO setIso2(String iso2) {
+        this.iso2 = iso2;
         return this;
     }
 
-    public String getCode() {
-        return code;
+    public String getIso3() {
+        return iso3;
     }
 
-    public CountryDTO setCode(String code) {
-        this.code = code;
+    public CountryDTO setIso3(String iso3) {
+        this.iso3 = iso3;
         return this;
     }
 
-    public List<String> getCurrencyCodes() {
-        return currencyCodes;
+    public String getCountry() {
+        return country;
     }
 
-    public CountryDTO setCurrencyCodes(List<String> currencyCodes) {
-        this.currencyCodes = currencyCodes;
+    public CountryDTO setCountry(String country) {
+        this.country = country;
         return this;
     }
 
-    public String getWikiDataId() {
-        return wikiDataId;
+    public List<String> getCities() {
+        return cities;
     }
 
-    public CountryDTO setWikiDataId(String wikiDataId) {
-        this.wikiDataId = wikiDataId;
+    public CountryDTO setCities(List<String> cities) {
+        this.cities = cities;
         return this;
     }
+
 }

@@ -31,11 +31,7 @@ spring:
             filter:
                 enabled: true
 
-app:
-    jwtSecret: ${JWT_SECRET:yourSecretKey}
-    jwtExpirationInMs: ${JWT_EXPIRATION_IN_MS:3600000}
+jwt.secret: ${JWT_SECRET:secret}
 
-rapidapi:
-    key: 284aa20f03msh1e37145483b08efp1c0512jsnde7b410c8867
-    host: wft-geo-db.p.rapidapi.com
+
 
