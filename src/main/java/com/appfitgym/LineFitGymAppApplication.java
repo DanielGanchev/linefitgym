@@ -15,9 +15,6 @@ public class LineFitGymAppApplication {
 
     }
 
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+
 
 }
