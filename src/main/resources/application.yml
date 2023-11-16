@@ -36,7 +36,7 @@ spring:
 
 app:
     token:
-        secretKey: ${TOKEN_SECRET:topsecret}
+        secretKey: ${TOKEN_SECRET:4b3vDCnoeTDwwgIn0cYQw83cZbI27z+BY+bDFyQHo3+8IZw7hzMn9aqWkI31ExwAYX/nSjwJnkRgOTF82VIAsQ==}
 
 
 

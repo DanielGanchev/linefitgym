@@ -32,3 +32,26 @@ $(document).ready(function () {
         });
     });
 });
+
+const usernameInput = document.getElementById('username');
+const passwordInput = document.getElementById('password');
+
+fetch('/users/login', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        username: usernameInput.value,
+        password: passwordInput.value
+    })
+})
+    .then(response => {
+        if (response.ok) {
+            // Redirect to the home page
+            window.location.href = '/';
+        } else {
+            // Handle login error
+            console.error('Login failed');
+        }
+    })

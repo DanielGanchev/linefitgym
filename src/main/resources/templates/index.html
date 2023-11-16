@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="~{fragments/head}">
 
@@ -19,6 +20,11 @@
 
 
   </header>
+
+  <div sec:authorize="isAuthenticated()">
+    <!-- This content will only be displayed if the user is authenticated -->
+    <p>Welcome, <span sec:authentication="name"></span>!</p>
+  </div>
   <!-- ***** Header Area End ***** -->
 
   <!-- ***** Main Banner Area Start ***** -->

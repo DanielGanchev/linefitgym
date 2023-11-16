@@ -37,7 +37,7 @@ import java.util.Optional;
     @Override
     public UserDetails loadUserByUsername(String username) {
         return userRepository
-                .findByEmail(username)
+                .findByUsername(username)
                 .map(this::map)
                 .orElseThrow(() -> new UsernameNotFoundException("Invalid credential"));
 
@@ -45,6 +45,8 @@ import java.util.Optional;
 
 
         private LineFitGymUserDetails map(User userEntity) {
+            userEntity.setEnabled(true);
+
             return new LineFitGymUserDetails(
 
                     userEntity.getId(),

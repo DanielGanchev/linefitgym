@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.filter.OncePerRequestFilter;
+import java.util.logging.Logger;
 
 import java.io.IOException;
 
@@ -28,6 +29,7 @@ import java.io.IOException;
         allowCredentials = "true", allowedHeaders = "true")
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
+
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
 
@@ -37,9 +39,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     @Override
-    protected void doFilterInternal(@Nonnull HttpServletRequest request,
-                                    @Nonnull HttpServletResponse response,
-                                    @Nonnull FilterChain filterChain)
+    public void doFilterInternal(@Nonnull HttpServletRequest request,
+                                 @Nonnull HttpServletResponse response,
+                                 @Nonnull FilterChain filterChain)
             throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
@@ -47,6 +49,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (!StringUtils.hasText(authHeader) ||
                 (StringUtils.hasText(authHeader) && !authHeader.startsWith("Bearer "))) {
             //todo add header for JWT in production
+
+
             response.setHeader("Access-Control-Allow-Origin", "*");
             response.setHeader("Access-Control-Allow-Credentials", "true");
             response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
@@ -56,12 +60,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-//token after prefix
+
         jwt = authHeader.substring(7);
         userEmail = jwtService.extractUserName(jwt);
 
-        //Generate an Authentication object using the provided username and password,
-// and subsequently store it in the SecurityContextHolder.
+
 
         if (StringUtils.hasText(userEmail)
                 && SecurityContextHolder.getContext().getAuthentication() == null) {

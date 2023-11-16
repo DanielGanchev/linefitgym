@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 
-public class User extends BaseEntity implements Serializable, UserDetails {
+public class User extends BaseEntity implements Serializable {
 
 
     private String username;
@@ -54,10 +54,19 @@ public class User extends BaseEntity implements Serializable, UserDetails {
         return this;
     }
 
-    private String hashedPassword;
-    private String salt;
+    private String password;
 
-    private boolean isActive;
+    public String getPassword() {
+        return password;
+    }
+
+    public User setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    @Column(columnDefinition = "boolean default false")
+    private boolean enabled;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<FitnessProgram> fitnessPrograms;
 
@@ -73,12 +82,7 @@ public class User extends BaseEntity implements Serializable, UserDetails {
 
     private List<UserRole> roles = new ArrayList<>();
 
-    public User(String username, String hashedPassword, String email, String salt) {
-        this.username = username;
-        this.email = email;
-        this.hashedPassword = hashedPassword;
-        this.salt = salt;
-    }
+
 
     public User() {
 
@@ -93,23 +97,10 @@ public class User extends BaseEntity implements Serializable, UserDetails {
         return this;
     }
 
-    public String getHashedPassword() {
-        return hashedPassword;
-    }
 
-    public User setHashedPassword(String hashedPassword) {
-        this.hashedPassword = hashedPassword;
-        return this;
-    }
 
-    public String getSalt() {
-        return salt;
-    }
 
-    public User setSalt(String salt) {
-        this.salt = salt;
-        return this;
-    }
+
 
 
 
@@ -131,42 +122,7 @@ public class User extends BaseEntity implements Serializable, UserDetails {
         return this;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
 
-    @Override
-    public String getPassword() {
-        return hashedPassword;
-    }
-
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-           return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-
-            return isActive;
-    }
 
     public User setUsername(String username) {
         this.username = username;
@@ -193,12 +149,16 @@ public class User extends BaseEntity implements Serializable, UserDetails {
         return this;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public String getUsername() {
+        return username;
     }
 
-    public User setActive(boolean active) {
-        isActive = active;
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public User setEnabled(boolean enabled) {
+        this.enabled = enabled;
         return this;
     }
 
@@ -248,4 +208,5 @@ public class User extends BaseEntity implements Serializable, UserDetails {
         this.country = country;
         return this;
     }
+
 }

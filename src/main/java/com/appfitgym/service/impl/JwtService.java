@@ -44,7 +44,17 @@ public class JwtService {
     }
 
     public String generateToken( LineFitGymUserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
+        String token =  generateToken(new HashMap<>(), userDetails);
+
+        if (token == null || token.isEmpty()) {
+
+            throw new RuntimeException("Token cannot be null or empty.");
+        }else {
+
+            return token;
+        }
+
+
     }
 
     public Boolean canTokenBeRefreshed(String token) {

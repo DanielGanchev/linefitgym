@@ -19,12 +19,12 @@
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a th:href="@{index.html}" class="active">Home</a></li>
                         <li><a href="explore.html">Explore</a></li>
                         <li><a href="details.html">Item Details</a></li>
                         <li><a href="author.html">Author</a></li>
-                        <li> <a class="nav-link" href="/users/register">Sign Up/In</a></li>
-                        <li  sec:authorize="isAuthenticated()"><a href="create.html">Create Yours</a></li>
+                        <li> <a class="nav-link" href="/users/register" sec:authorize="!isAuthenticated()">Sign Up/In</a></li>
+                        <li  sec:authorize="hasAuthority('ROLE_TRAINEE')"><a href="create.html">Create Yours</a></li>
                     </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>

@@ -1,6 +1,7 @@
 package com.appfitgym.web;
 
-import com.appfitgym.config.param.AuthenticationRequest;
+import com.appfitgym.config.param.AuthRequest;
+
 import com.appfitgym.model.dto.*;
 import com.appfitgym.model.entities.LineFitGymUserDetails;
 import com.appfitgym.model.enums.SexEnum;
@@ -18,7 +19,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -43,12 +44,12 @@ public class UserRegistrationController {
 
 
 
-    private final PasswordEncoder passwordEncoder;
+
 
     public UserRegistrationController(UserService userService, CountryService countryService,
 
                                       UserDetailsService userDetailsService,
-                                      AuthenticationManager authenticationManager, JwtService jwtTokenUtil, PasswordEncoder passwordEncoder) {
+                                      AuthenticationManager authenticationManager, JwtService jwtTokenUtil) {
         this.userService = userService;
         this.countryService = countryService;
 
@@ -56,8 +57,10 @@ public class UserRegistrationController {
         this.authenticationManager = authenticationManager;
 
         this.jwtTokenUtil = jwtTokenUtil;
-        this.passwordEncoder = passwordEncoder;
+
     }
+
+
 
     @GetMapping("/register")
     public ModelAndView register(
@@ -99,14 +102,17 @@ public class UserRegistrationController {
         return new ModelAndView("redirect:/");
     }
 
+    @ModelAttribute("authRequest")
+    public AuthRequest authRequest() {
+        return new AuthRequest();
+    }
+
 
 
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestParam String username, @RequestParam String password) throws Exception {
-        // authentication logic here
+    public ResponseEntity<?> login(@ModelAttribute("authRequest") AuthRequest request) {
 
-        AuthenticationRequest request = new AuthenticationRequest(username, password);
         if (isValid(request) != null) {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -117,20 +123,24 @@ public class UserRegistrationController {
 
             LineFitGymUserDetails user = (LineFitGymUserDetails) authentication.getPrincipal();
             user.setPassword(null);
+
+
             return ResponseEntity.ok()
                     .header(
                             HttpHeaders.AUTHORIZATION,
                             jwtTokenUtil.generateToken(user)
                     )
                     .body(user);
+
         } else {
+            System.out.println("Invalid credentials");
             return ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)
                     .build();
         }
     }
 
-    private UserDetails isValid(AuthenticationRequest request) {
+    private UserDetails isValid(AuthRequest request) {
         return userDetailsService.loadUserByUsername(request.getUsername());
     }
 

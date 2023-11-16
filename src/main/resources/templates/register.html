@@ -24,6 +24,8 @@
 </header>
 
 
+
+
 <div class="register-form" id="container">
     <div class="form-container sign-up">
         <form    th:action="@{/users/register}"
@@ -116,10 +118,10 @@
         </form >
     </div>
     <div class="form-container sign-in">
-        <form th:action="@{/users/login}" method="post">
+        <form th:action="@{/users/login}" th:object="${authRequest}" method="post">
             <h1>Sign In</h1>
-            <input type="text" placeholder="username" th:name="username">
-            <input type="password" placeholder="Password" th:name="password">
+            <input type="text" placeholder="username"   th:field="*{username}">
+            <input type="password" placeholder="Password"   th:field="*{password}">
             <button type="submit">Sign In</button>
         </form>
 
