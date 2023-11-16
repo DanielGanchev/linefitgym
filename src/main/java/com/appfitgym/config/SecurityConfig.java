@@ -37,12 +37,7 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @EnableWebMvc
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig implements WebMvcConfigurer {
-    //    private static final RequestMatcher PUBLIC_URLS = new OrRequestMatcher(
-//            new AntPathRequestMatcher("/swagger-ui.html"),
-//            new AntPathRequestMatcher("/swagger-resources/**"),
-//            new AntPathRequestMatcher("/v2/api-docs"),
-//            new AntPathRequestMatcher("/dogs")
-//    );
+
     private final UserDetailsService userDetailsService;
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;

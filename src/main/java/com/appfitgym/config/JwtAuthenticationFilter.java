@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.filter.OncePerRequestFilter;
-import java.util.logging.Logger;
 
 import java.io.IOException;
 
@@ -48,7 +47,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String userEmail;
         if (!StringUtils.hasText(authHeader) ||
                 (StringUtils.hasText(authHeader) && !authHeader.startsWith("Bearer "))) {
-            //todo add header for JWT in production
+
 
 
             response.setHeader("Access-Control-Allow-Origin", "*");
