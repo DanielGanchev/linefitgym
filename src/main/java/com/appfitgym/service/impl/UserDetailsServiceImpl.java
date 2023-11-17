@@ -1,70 +1,61 @@
 package com.appfitgym.service.impl;
 
-import com.appfitgym.model.entities.LineFitGymUserDetails;
+
+import com.appfitgym.model.entities.UserEntity;
 import com.appfitgym.model.entities.UserRole;
 import com.appfitgym.repository.UserRepository;
-import com.appfitgym.model.entities.User;
 
-import com.appfitgym.repository.UserRoleRepository;
-import jakarta.transaction.Transactional;
+
+
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+
 
 
 @Service
-    @Transactional
-    public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
         private final UserRepository userRepository;
 
-        private final UserRoleRepository userRoleRepository;
 
-        public UserDetailsServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository) {
+
+        public UserDetailsServiceImpl(UserRepository userRepository) {
             this.userRepository = userRepository;
-            this.userRoleRepository = userRoleRepository;
+
         }
 
     @Override
-    public UserDetails loadUserByUsername(String username) {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println("Loading user by username: " + username);
         return userRepository
                 .findByUsername(username)
-                .map(this::map)
+                .map(userEntity -> {
+                    System.out.println("User found: " + userEntity.getUsername());
+                    return map(userEntity);
+                })
                 .orElseThrow(() -> new UsernameNotFoundException("Invalid credential"));
-
     }
 
+    private static UserDetails map(UserEntity userEntity) {
+        System.out.println("Mapping user: " + userEntity.getUsername());
+        return User.withUsername(userEntity.getUsername())
+                .password(userEntity.getPassword())
+                .authorities(userEntity.getRoles().stream().map(UserDetailsServiceImpl::map).toList())
+                .build();
+    }
 
-        private LineFitGymUserDetails map(User userEntity) {
-            userEntity.setEnabled(true);
-
-            return new LineFitGymUserDetails(
-
-                    userEntity.getId(),
-                    userEntity.getEmail(),
-                    userEntity.getPassword(),
-                    userEntity.getFirstName(),
-                    userEntity.getLastName(),
-                    userEntity.isEnabled(),
-                    userEntity.getRoles().stream().map(this::map).toList()
-            );
-
-
-
-        }
-
-    private GrantedAuthority map(UserRole userRoleEntity) {
-
-        return new SimpleGrantedAuthority("ROLE_" + userRoleEntity.getRole().name());
+    private static GrantedAuthority map(UserRole role) {
+        System.out.println("Mapping role: " + role.getRole().name());
+        return new SimpleGrantedAuthority("ROLE_" + role.getRole().name());
     }
 
 

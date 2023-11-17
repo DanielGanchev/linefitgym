@@ -66,7 +66,7 @@ public class GeoService {
             }
         }
 
-        return Collections.emptyList(); // Return empty list if there's an error or no data
+        return Collections.emptyList(); //
     }
 
     private void saveCountriesToDatabase(List<CountryDTO> countries) {

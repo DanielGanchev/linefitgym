@@ -26,7 +26,7 @@
 
 
 
-<div class="register-form" id="container">
+<div class="register-form active" id="container">
     <div class="form-container sign-up">
         <form    th:action="@{/users/register}"
                  th:object="${userRegisterBindingModel}"
@@ -118,25 +118,25 @@
         </form >
     </div>
     <div class="form-container sign-in">
-        <form th:action="@{/users/login}" th:object="${authRequest}" method="post">
+        <form th:action="@{/users/login}"  th:method="POST">
             <h1>Sign In</h1>
-            <input type="text" placeholder="username"   th:field="*{username}">
-            <input type="password" placeholder="Password"   th:field="*{password}">
-            <button type="submit">Sign In</button>
+            <input type="text" placeholder="username"  th:name="login-username"  >
+            <input type="password" placeholder="Password" th:name="login-password"   >
+            <button type="submit" id="login-button">Sign In</button>
         </form>
 
     </div>
     <div class="toggle-container">
         <div class="toggle">
-            <div class="toggle-panel toggle-left">
+            <div class="toggle-panel  toggle-left">
                 <h1>Welcome Back!</h1>
                 <p>Enter your personal details to use all of site features</p>
-                <button class="hidden" id="login">Sign In</button>
+                <a class="hidden btn btn-link " id="login"  href="/users/login">Sign In</a>
             </div>
             <div class="toggle-panel toggle-right">
                 <h1>Hello, Friend!</h1>
                 <p>Register with your personal details to use all of site features</p>
-                <button class="hidden" id="register">Register</button>
+                <button class="hidden active" id="register">Register</button>
             </div>
         </div>
     </div>

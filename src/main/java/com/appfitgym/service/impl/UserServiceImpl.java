@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    private User map(UserRegistrationDto userRegistrationDto) {
+    private UserEntity map(UserRegistrationDto userRegistrationDto) {
 
 
         String hashedPassword = passwordEncoder.encode(userRegistrationDto.password());
@@ -60,16 +60,16 @@ public class UserServiceImpl implements UserService {
 
 
 
-        UserRole userRole = new UserRole();
-        userRole.setRole(userRegistrationDto.role());
-        userRole = userRoleRepository.save(userRole); // Save the UserRole instance
+        UserRole userRole = userRoleRepository.findByRole(userRegistrationDto.role()).orElseThrow();
+
+
 
         List<UserRole> roles = new ArrayList<>();
         roles.add(userRole);
 
 
 
-        return new User().setEnabled(false)
+        return new UserEntity().setActive(false)
                 .setUsername(userRegistrationDto.username())
                 .setFirstName(userRegistrationDto.firstName())
                 .setLastName(userRegistrationDto.lastName())
@@ -86,25 +86,7 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    public LineFitGymUserDetails login(String userName) {
 
-
-
-        UserDetails userDetails =
-                userDetailsService.loadUserByUsername(userName);
-
-        Authentication auth =
-                new UsernamePasswordAuthenticationToken(
-                        userDetails,
-                        userDetails.getPassword(),
-                        userDetails.getAuthorities()
-                );
-
-        SecurityContextHolder.
-                getContext().
-                setAuthentication(auth);
-        return (LineFitGymUserDetails) auth.getPrincipal();
-    }
 
 
 }

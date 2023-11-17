@@ -15,7 +15,7 @@ public class Diet extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserEntity userEntity;
 
     public String getName() {
         return name;
@@ -35,12 +35,12 @@ public class Diet extends BaseEntity{
         return this;
     }
 
-    public User getUser() {
-        return user;
+    public UserEntity getUser() {
+        return userEntity;
     }
 
-    public Diet setUser(User user) {
-        this.user = user;
+    public Diet setUser(UserEntity userEntity) {
+        this.userEntity = userEntity;
         return this;
     }
 }

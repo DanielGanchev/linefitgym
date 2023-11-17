@@ -3,7 +3,6 @@ package com.appfitgym.model.entities;
 import jakarta.persistence.*;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "countries")
@@ -21,7 +20,7 @@ public class Country extends BaseEntity {
 
 
     @OneToMany(mappedBy = "country")
-    private List<User> users;
+    private List<UserEntity> userEntities;
 
     public String getName() {
         return name;
@@ -32,12 +31,12 @@ public class Country extends BaseEntity {
         return this;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<UserEntity> getUsers() {
+        return userEntities;
     }
 
-    public Country setUsers(List<User> users) {
-        this.users = users;
+    public Country setUsers(List<UserEntity> userEntities) {
+        this.userEntities = userEntities;
         return this;
     }
 

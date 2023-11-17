@@ -14,7 +14,7 @@ public class FitnessProgram extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserEntity userEntity;
 
     public String getName() {
         return name;
@@ -34,12 +34,12 @@ public class FitnessProgram extends BaseEntity{
         return this;
     }
 
-    public User getUser() {
-        return user;
+    public UserEntity getUser() {
+        return userEntity;
     }
 
-    public FitnessProgram setUser(User user) {
-        this.user = user;
+    public FitnessProgram setUser(UserEntity userEntity) {
+        this.userEntity = userEntity;
         return this;
     }
 }
