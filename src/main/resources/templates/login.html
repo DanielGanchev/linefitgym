@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:insert="~{fragments/head-register}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/register-form.css}">
+
+</head>
+
+<body>
+
+<!-- ***** Preloader Start ***** -->
+<div th:replace="~{fragments/preloader}">
+
+
+</div>
+<!-- ***** Preloader End ***** -->
+
+<!-- ***** Header Area Start ***** -->
+<header th:replace="~{fragments/navbar}">
+
+</header>
+
+
+<div class="register-form" id="container">
+    <div class="form-container sign-up">
+
+    </div>
+    <div class="form-container sign-in sign-in-height">
+        <form th:action="@{/users/login}" th:method="POST">
+            <h1>Sign In</h1>
+            <p th:if="${bad_credentials}" class="errors alert alert-danger">
+                Invalid username or password.
+            </p>
+            <input type="text" placeholder="Username" name="username" >
+            <input type="password" placeholder="Password" name="password">
+
+            <button type="submit">Sign In</button>
+        </form>
+
+    </div>
+    <div class="toggle-container">
+        <div class="toggle">
+
+            <div class="toggle-panel toggle-right">
+                <h1>Hello, Friend!</h1>
+                <p>Register with your personal details to use all of site features</p>
+                <a class="hidden btn btn-link" id="register " href="/users/register">Register</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{fragments/footer}">
+
+</footer>
+
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="/jquery/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+
+<script src="/js/isotope.min.js"></script>
+<script src="/js/owl-carousel.js"></script>
+
+<script src="/js/custom.js"></script>
+<script src="/js/popup.js"></script>
+<script src="/js/script.js"></script>
+</body>
+</html>
