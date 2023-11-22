@@ -3,6 +3,7 @@ logging:
         blog: WARN
         org: WARN
         org.hibernate.SQL: off
+        org.springframework.security: TRACE
 LineFitGymApp:
     default:
         admin:

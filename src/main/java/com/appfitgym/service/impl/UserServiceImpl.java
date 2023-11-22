@@ -9,10 +9,6 @@ import com.appfitgym.repository.UserRepository;
 import com.appfitgym.repository.UserRoleRepository;
 import com.appfitgym.service.UserService;
 
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -43,11 +39,10 @@ public class UserServiceImpl implements UserService {
         this.userDetailsService = userDetailsService;
         this.userRoleRepository = userRoleRepository;
     }
-
     @Override
-    public void register(UserRegistrationDto userRegistrationDto) {
-        userRepository.save(map(userRegistrationDto));
-
+    public boolean register(UserRegistrationDto userRegistrationDto) {
+        UserEntity savedUser = userRepository.save(map(userRegistrationDto));
+        return savedUser != null;
     }
 
     private UserEntity map(UserRegistrationDto userRegistrationDto) {
@@ -58,16 +53,10 @@ public class UserServiceImpl implements UserService {
 
         Country country = city.getCountry();
 
-
-
         UserRole userRole = userRoleRepository.findByRole(userRegistrationDto.role()).orElseThrow();
-
-
 
         List<UserRole> roles = new ArrayList<>();
         roles.add(userRole);
-
-
 
         return new UserEntity().setActive(false)
                 .setUsername(userRegistrationDto.username())

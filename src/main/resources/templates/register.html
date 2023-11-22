@@ -51,7 +51,7 @@
                    th:field="*{firstName}"
                    th:errorclass="bg-danger" />
             <small th:if="${#fields.hasErrors('firstName')}"
-                   th:errors="*{firstName()}"
+                   th:errors="*{firstName}"
                    class="text-danger">First Name error message</small>
 
             <input type="text" class="form-control" id="lastName" placeholder="Last Name"
@@ -60,6 +60,13 @@
             <small th:if="${#fields.hasErrors('lastName')}"
                    th:errors="*{lastName}"
                    class="text-danger">Last Name error message</small>
+
+            <input type="date" class="form-control" id="birthDate" placeholder="Birth Date"
+                   th:field="*{birthDate}"
+                   th:errorclass="bg-danger" />
+            <small th:if="${#fields.hasErrors('birthDate')}"
+                   th:errors="*{birthDate}"
+                   class="text-danger">Birth Date error message</small>
             <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number"
                    th:field="*{phoneNumber}"
                    th:errorclass="bg-danger" />
@@ -86,6 +93,11 @@
                     <option th:value="${city.id}" th:text="${city.name}" />
                 </th:block>
             </select>
+            <small  th:if="${#fields.hasErrors('cityId')}"
+                    th:errors="*{cityId}"
+
+                    class="text-danger">Language error message</small>
+
 
             <select id="sexEnums"
                     th:field="*{sexEnum}"
@@ -96,6 +108,10 @@
                 </th:block>
 
             </select>
+            <small  th:if="${#fields.hasErrors('sexEnum')}"
+                    th:errors="*{sexEnum}"
+
+                    class="text-danger">Language error message</small>
 
             <select id="roleEnum" th:field="*{role}" th:errorclass="is-invalid">
                 <option value="">Select a role</option>
@@ -103,6 +119,10 @@
                     <option th:value="${role}" th:text="${role}" />
                 </th:block>
             </select>
+            <small  th:if="${#fields.hasErrors('role')}"
+                    th:errors="*{role}"
+
+                    class="text-danger">Language error message</small>
 
 
             <input type="password" class="form-control" id="password" placeholder="Password"
@@ -118,11 +138,7 @@
         </form >
     </div>
     <div class="form-container sign-in">
-        <form th:action="@{/users/login}"  th:method="POST">
-            <h1>Sign In</h1>
-            <input type="text" placeholder="username"  th:name="login-username"  >
-            <input type="password" placeholder="Password" th:name="login-password"   >
-            <button type="submit" id="login-button">Sign In</button>
+
         </form>
 
     </div>

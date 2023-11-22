@@ -1,32 +1,19 @@
 package com.appfitgym.web;
 
 import com.appfitgym.model.dto.*;
-import com.appfitgym.model.entities.LineFitGymUserDetails;
 import com.appfitgym.model.enums.SexEnum;
 import com.appfitgym.model.enums.UserRoleEnum;
 import com.appfitgym.service.CountryService;
 import com.appfitgym.service.UserService;
-
-
 import jakarta.validation.Valid;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.security.core.userdetails.UserDetailsService;
-
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 
 @RestController
 @RequestMapping("/users")
@@ -37,7 +24,7 @@ public class UserRegistrationController {
 
     private final UserDetailsService userDetailsService;
 
-    private final AuthenticationManager authenticationManager;
+
 
 
 
@@ -47,13 +34,13 @@ public class UserRegistrationController {
 
     public UserRegistrationController(UserService userService, CountryService countryService,
 
-                                      UserDetailsService userDetailsService,
-                                      AuthenticationManager authenticationManager) {
+                                      UserDetailsService userDetailsService
+                                   ) {
         this.userService = userService;
         this.countryService = countryService;
 
         this.userDetailsService = userDetailsService;
-        this.authenticationManager = authenticationManager;
+
 
 
 
@@ -63,18 +50,7 @@ public class UserRegistrationController {
 
     @GetMapping("/register")
     public ModelAndView register(
-            @ModelAttribute("userRegisterBindingModel") UserRegistrationDto userRegistrationDto,
-            Model model
-    ) {
-        List<CountryLoadDto> countries = countryService.getAllCountries();
-        model.addAttribute("countries", countries);
-
-        List<UserRoleEnum> roles = Arrays.stream(UserRoleEnum.values())
-                .filter(role -> !role.equals(UserRoleEnum.ADMIN))
-                .collect(Collectors.toList());
-        model.addAttribute("roles", roles);
-
-
+            @ModelAttribute("userRegisterBindingModel") UserRegistrationDto userRegistrationDto) {
         return new ModelAndView("register");
     }
 
@@ -84,19 +60,39 @@ public class UserRegistrationController {
         return SexEnum.values();
     }
 
+    @ModelAttribute("roles")
+    public List<UserRoleEnum> roles() {
+        return Arrays.stream(UserRoleEnum.values())
+                .filter(role -> !role.equals(UserRoleEnum.ADMIN))
+                .collect(Collectors.toList());
+    }
+
+    @ModelAttribute("countries")
+    public List<CountryLoadDto> countries() {
+        return countryService.getAllCountries();
+    }
+
+
+
 
 
     @PostMapping("/register")
     public ModelAndView register(
             @ModelAttribute("userRegisterBindingModel") @Valid UserRegistrationDto userRegistrationDto,
-            BindingResult bindingResult,
-            Model model
-    ) {
+            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ModelAndView("register");
         }
 
-        userService.register(userRegistrationDto);
+
+
+       boolean hasSuccessfulRegistration = userService.register(userRegistrationDto);
+
+        if (!hasSuccessfulRegistration) {
+            ModelAndView modelAndView = new ModelAndView("register");
+            modelAndView.addObject("hasRegistrationError", true);
+            return modelAndView;
+        }
 
         return new ModelAndView("redirect:/");
     }

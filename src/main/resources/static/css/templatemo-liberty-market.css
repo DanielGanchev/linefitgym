@@ -382,7 +382,12 @@ Header Style
   background-color: transparent;
 }
 
+.image-run{
+  color: #7453fc;
+}
+
 .header-area .main-nav .logo {
+
   flex-basis: 30%;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
@@ -391,15 +396,27 @@ Header Style
 }
 
 .header-area .main-nav .logo img {
-  width: 223px;
+  width: 58px;
 }
 
 .background-header .main-nav .logo {
+
   margin-top: 8px;
 }
 
 .background-header .main-nav .logo img {
-  width: 180px;
+  width: 50px;
+}
+
+.logo-custom-container{
+  margin-left: 12px;
+}
+
+.logo-custom-img{
+  margin: 0;
+  padding: 0;
+
+
 }
 
 .header-area .main-nav .nav {
@@ -823,7 +840,7 @@ Categories & Collections Style
 }
 
 .categories-collections:after {
-  background-image: url(/images/category-collection-dec.png);
+  background-image: url(static/images/category-collection-dec.png);
   width: 300px;
   height: 282px;
   position: absolute;
@@ -1631,7 +1648,7 @@ Details Page Style
 }
 
 .item-details-page:after {
-  background-image: url(/assets/images/category-collection-dec.png);
+  background-image: url(static/images/category-collection-dec.png);
   width: 300px;
   height: 282px;
   position: absolute;

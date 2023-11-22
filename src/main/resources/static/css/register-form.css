@@ -24,15 +24,14 @@ background-repeat: no-repeat;
 
 .register-form {
     background-color: #fff;
-
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     position: relative;
-    overflow: hidden;
+
     width: 768px;
     max-width: 100%;
     min-height: 800px;
-    margin-top: 100px; /* Adjust the margin based on your design */
+    margin-top: 100px;
     z-index: 1;
     margin-bottom: 8px;
 }
@@ -95,7 +94,7 @@ background-repeat: no-repeat;
     justify-content: center;
     flex-direction: column;
     padding: 0 40px;
-    height: 100%;
+
 }
 
 .register-form input ,select {
@@ -126,6 +125,11 @@ background-repeat: no-repeat;
     left: 0;
     width: 50%;
     z-index: 2;
+
+}
+
+.sign-in-height {
+    height: 100%;
 }
 
 .register-form.active .sign-in{
@@ -137,7 +141,13 @@ background-repeat: no-repeat;
     width: 50%;
     opacity: 0;
     z-index: 1;
+    overflow: auto;
+    height: calc(100% );
 
+}
+
+.sign-in-height form{
+    height: 100%;
 }
 
 .sign-in h1{

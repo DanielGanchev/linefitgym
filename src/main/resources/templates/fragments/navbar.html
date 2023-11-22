@@ -14,8 +14,15 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="index.html" class="logo">
-                        <img src="/images/logo.png" alt="">
+                        <img src="/images/logo.png" class="image-run" alt="">
+                        <span class="logo-custom-container">
+                            <img src="/images/1.png"  class="logo-custom-img" alt="">
+                            <img src="/images/2.png"  class="logo-custom-img" alt="">
+                            <img src="/images/3.png"  class="logo-custom-img" alt="">
+                        </span>
+
                     </a>
+
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
@@ -23,9 +30,16 @@
                         <li><a href="explore.html">Explore</a></li>
                         <li><a href="details.html">Item Details</a></li>
                         <li><a href="author.html">Author</a></li>
-                        <li> <a class="nav-link" href="/users/register" sec:authorize="!isAuthenticated()">Sign Up</a></li>
-                        <li> <a class="nav-link" href="/users/login" sec:authorize="!isAuthenticated()">Sign In</a></li>
-                        <li  ><a class="nav-link"  th:href="@{/coach/manager}" >Manage Programs</a></li>
+                        <li><a href="">Blog</a></li>
+                        <li sec:authorize="!isAuthenticated()">
+                            <a class="nav-link" href="/users/register">Sign Up</a>
+                        </li>
+                        <li sec:authorize="!isAuthenticated()">
+                            <a class="nav-link" href="/users/login">Sign In</a>
+                        </li>
+                        <li sec:authorize="hasRole('ROLE_COACH')">
+                            <a class="nav-link" th:href="@{/coach/manager}">Manage Programs</a>
+                        </li>
                     </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
