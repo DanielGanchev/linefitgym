@@ -2,13 +2,12 @@ package com.appfitgym.model.dto;
 
 import com.appfitgym.model.enums.SexEnum;
 import com.appfitgym.model.enums.UserRoleEnum;
+import jakarta.mail.Multipart;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.Length;
-import validation.FieldMatch;
-import validation.OverSixteen;
-import validation.UniqueUser;
-import validation.UniqueUserEmail;
+import org.springframework.web.multipart.MultipartFile;
+import validation.*;
 
 import java.time.LocalDate;
 
@@ -40,9 +39,15 @@ public record UserRegistrationDto(
         @Positive(message = "Please select a city!")
         @NotNull(message = "Please select a city!")
         Long cityId,
-        @NotNull(message = "Please select a role!") UserRoleEnum role,
+        @NotNull(message = "Please select a role!")
+        UserRoleEnum role,
         @Positive(message = "Please select a country!")
         @NotNull(message = "Please select a country!")
         Long countryId,
         @NotNull(message = ("Please select a sex!"))
-        SexEnum sexEnum) {}
+        SexEnum sexEnum,
+         @ValidFile
+        MultipartFile profilePicture
+        ) {
+
+}

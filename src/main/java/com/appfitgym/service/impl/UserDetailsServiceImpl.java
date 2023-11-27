@@ -1,6 +1,7 @@
 package com.appfitgym.service.impl;
 
 
+import com.appfitgym.model.dto.CustomerUserDetails;
 import com.appfitgym.model.entities.UserEntity;
 import com.appfitgym.model.entities.UserRole;
 import com.appfitgym.repository.UserRepository;
@@ -17,8 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-
-
+import java.util.Optional;
 
 
 @Service
@@ -35,14 +35,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("Loading user by username: " + username);
-        return userRepository
-                .findByUsername(username)
-                .map(userEntity -> {
-                    System.out.println("User found: " + userEntity.getUsername());
-                    return map(userEntity);
-                })
-                .orElseThrow(() -> new UsernameNotFoundException("Invalid credential"));
+        UserEntity user = userRepository.findByUsername(username).orElseThrow();
+        if (user == null) {
+            throw new UsernameNotFoundException(username);
+        }
+        return new CustomerUserDetails (user);
     }
 
     private static UserDetails map(UserEntity userEntity) {
@@ -50,6 +47,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return User.withUsername(userEntity.getUsername())
                 .password(userEntity.getPassword())
                 .authorities(userEntity.getRoles().stream().map(UserDetailsServiceImpl::map).toList())
+
+
+
                 .build();
     }
 
@@ -57,6 +57,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         System.out.println("Mapping role: " + role.getRole().name());
         return new SimpleGrantedAuthority("ROLE_" + role.getRole().name());
     }
+
+    
 
 
 

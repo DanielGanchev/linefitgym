@@ -1,11 +1,10 @@
 package com.appfitgym.service.impl;
 
-import com.appfitgym.model.dto.CityDTO;
-import com.appfitgym.model.dto.CityLoadDTO;
-import com.appfitgym.model.dto.CountriesResponseDTO;
-import com.appfitgym.model.dto.CountryDTO;
-import com.appfitgym.model.entities.City;
-import com.appfitgym.model.entities.Country;
+import com.appfitgym.model.dto.country.CityLoadDTO;
+import com.appfitgym.model.dto.country.CountriesResponseDTO;
+import com.appfitgym.model.dto.country.CountryDTO;
+import com.appfitgym.model.entities.country.City;
+import com.appfitgym.model.entities.country.Country;
 import com.appfitgym.repository.CityRepository;
 import com.appfitgym.repository.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,13 +70,13 @@ public class GeoService {
 
     private void saveCountriesToDatabase(List<CountryDTO> countries) {
         countries.forEach(countryDTO -> {
-            // Create Country entity
+
             Country countryEntity = new Country().setName(countryDTO.getCountry());
 
-            // Save the Country entity first
+
             countryRepository.save(countryEntity);
 
-            // Map and save the cities with the reference to the saved Country entity
+
             Set<City> cities = mapCities(countryDTO.getCities(), countryEntity);
             cityRepository.saveAll(cities);
         });

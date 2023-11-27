@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>
 
 <head th:insert="~{fragments/head-register}">
 
@@ -19,25 +19,24 @@
 <!-- ***** Preloader End ***** -->
 
 <!-- ***** Header Area Start ***** -->
-<header  th:replace="~{fragments/navbar}">
+<header th:replace="~{fragments/navbar}">
 
 </header>
 
 
-
-
 <div class="register-form active" id="container">
     <div class="form-container sign-up">
-        <form    th:action="@{/users/register}"
-                 th:object="${userRegisterBindingModel}"
-                 th:method="POST">
+        <form th:action="@{/users/register}"
+              th:object="${userRegisterBindingModel}"
+              th:method="POST"
+              enctype="multipart/form-data">
             <h1>Create Account</h1>
 
             <div th:if="${hasRegistrationError}" class="text-danger">Registration Error occurred</div>
 
             <input type="text" class="form-control" id="username" placeholder="Username"
                    th:field="*{username}"
-                   th:errorclass="bg-danger" />
+                   th:errorclass="bg-danger"/>
             <small th:if="${#fields.hasErrors('username')}"
                    th:errors="*{username}"
                    class="text-danger">Username error message</small>
@@ -49,80 +48,80 @@
                    class="text-danger">Email error message</small>
             <input type="text" class="form-control" id="firstName" placeholder="First Name"
                    th:field="*{firstName}"
-                   th:errorclass="bg-danger" />
+                   th:errorclass="bg-danger"/>
             <small th:if="${#fields.hasErrors('firstName')}"
                    th:errors="*{firstName}"
                    class="text-danger">First Name error message</small>
 
             <input type="text" class="form-control" id="lastName" placeholder="Last Name"
                    th:field="*{lastName}"
-                   th:errorclass="bg-danger" />
+                   th:errorclass="bg-danger"/>
             <small th:if="${#fields.hasErrors('lastName')}"
                    th:errors="*{lastName}"
                    class="text-danger">Last Name error message</small>
 
             <input type="date" class="form-control" id="birthDate" placeholder="Birth Date"
                    th:field="*{birthDate}"
-                   th:errorclass="bg-danger" />
+                   th:errorclass="bg-danger"/>
             <small th:if="${#fields.hasErrors('birthDate')}"
                    th:errors="*{birthDate}"
                    class="text-danger">Birth Date error message</small>
             <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number"
                    th:field="*{phoneNumber}"
-                   th:errorclass="bg-danger" />
+                   th:errorclass="bg-danger"/>
             <small th:if="${#fields.hasErrors('phoneNumber')}"
                    th:errors="*{phoneNumber}"
                    class="text-danger">Phone Number error message</small>
             <select id="countryId"
-                   th:field="*{countryId}"
+                    th:field="*{countryId}"
                     th:errorclass="bg-danger">
                 <option value="">Select a country</option>
                 <th:block th:each="country: ${countries}">
-                    <option th:value="${country.id}" th:text="${country.name}" />
+                    <option th:value="${country.id}" th:text="${country.name}"/>
                 </th:block>
             </select>
-            <small  th:if="${#fields.hasErrors('countryId')}"
-                    th:errors="*{countryId}"
+            <small th:if="${#fields.hasErrors('countryId')}"
+                   th:errors="*{countryId}"
 
-                    class="text-danger">Language error message</small>
+                   class="text-danger">Language error message</small>
 
             <!-- City dropdown -->
             <select id="cityId" name="cityId" th:errorclass="is-invalid">
                 <option value="">Select a city</option>
                 <th:block th:each="city : ${cities}">
-                    <option th:value="${city.id}" th:text="${city.name}" />
+                    <option th:value="${city.id}" th:text="${city.name}"/>
                 </th:block>
             </select>
-            <small  th:if="${#fields.hasErrors('cityId')}"
-                    th:errors="*{cityId}"
+            <small th:if="${#fields.hasErrors('cityId')}"
+                   th:errors="*{cityId}"
 
-                    class="text-danger">Language error message</small>
+                   class="text-danger">Language error message</small>
 
 
             <select id="sexEnums"
                     th:field="*{sexEnum}"
                     th:errorclass="is-invalid">
-            <option value="">Select a sex</option>
+                <option value="">Select a sex</option>
                 <th:block th:each="sexEnum : ${sexEnums}">
-                <option th:value="${sexEnum}" th:text="${sexEnum}" />
+                    <option th:value="${sexEnum}" th:text="${sexEnum}"/>
                 </th:block>
 
             </select>
-            <small  th:if="${#fields.hasErrors('sexEnum')}"
-                    th:errors="*{sexEnum}"
+            <small th:if="${#fields.hasErrors('sexEnum')}"
+                   th:errors="*{sexEnum}"
 
-                    class="text-danger">Language error message</small>
+                   class="text-danger">Language error message</small>
 
             <select id="roleEnum" th:field="*{role}" th:errorclass="is-invalid">
                 <option value="">Select a role</option>
                 <th:block th:each="role : ${roles}">
-                    <option th:value="${role}" th:text="${role}" />
+                    <option th:value="${role}" th:text="${role}"/>
                 </th:block>
             </select>
-            <small  th:if="${#fields.hasErrors('role')}"
-                    th:errors="*{role}"
+            <small th:if="${#fields.hasErrors('role')}"
+                   th:errors="*{role}"
 
-                    class="text-danger">Language error message</small>
+                   class="text-danger">Language error message</small>
 
 
             <input type="password" class="form-control" id="password" placeholder="Password"
@@ -134,8 +133,19 @@
             <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password"
                    th:field="*{confirmPassword}"
                    th:classappend="${#fields.hasErrors('password')} ? 'bg-danger'"/>
+
+            <label for="profilePicture">Profile Picture</label>
+
+            <input type="file" id="profilePicture" class="form-control" name="profilePicture"
+                   th:field="*{profilePicture}"/>
+            <small th:if="${#fields.hasErrors('profilePicture')}"
+                   th:errors="*{profilePicture}"
+                   class="text-danger">Profile Picture error message</small>
+
+
+
             <button>Sign Up</button>
-        </form >
+        </form>
     </div>
     <div class="form-container sign-in">
 
@@ -147,7 +157,7 @@
             <div class="toggle-panel  toggle-left">
                 <h1>Welcome Back!</h1>
                 <p>Enter your personal details to use all of site features</p>
-                <a class="hidden btn btn-link " id="login"  href="/users/login">Sign In</a>
+                <a class="hidden btn btn-link " id="login" href="/users/login">Sign In</a>
             </div>
             <div class="toggle-panel toggle-right">
                 <h1>Hello, Friend!</h1>

@@ -1,7 +1,5 @@
-package com.appfitgym.model.dto;
+package com.appfitgym.model.dto.country;
 
-
-import com.appfitgym.model.entities.City;
 
 import java.util.List;
 

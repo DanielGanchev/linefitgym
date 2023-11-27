@@ -1,4 +1,4 @@
-package com.appfitgym.model.dto;
+package com.appfitgym.model.dto.country;
 
 import java.util.List;
 

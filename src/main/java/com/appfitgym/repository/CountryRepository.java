@@ -1,8 +1,6 @@
 package com.appfitgym.repository;
 
-import com.appfitgym.model.dto.CityLoadDTO;
-import com.appfitgym.model.dto.CountryLoadDto;
-import com.appfitgym.model.entities.Country;
+import com.appfitgym.model.entities.country.Country;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

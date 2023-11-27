@@ -1,6 +1,8 @@
 package com.appfitgym.service;
 
-import com.appfitgym.model.dto.UserRegistrationDto;
+import com.appfitgym.model.dto.*;
+
+import java.util.Optional;
 
 public interface UserService {
 
@@ -9,4 +11,8 @@ public interface UserService {
 
 
 
+
+    Optional<UserUpdateValidationDto> getUserDetails(Long id);
+
+    void updateUser(Long id, UserUpdateValidationDto userUpdate);
 }

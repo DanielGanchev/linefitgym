@@ -1,5 +1,7 @@
 package com.appfitgym.model.entities;
 
+import com.appfitgym.model.entities.country.City;
+import com.appfitgym.model.entities.country.Country;
 import com.appfitgym.model.enums.SexEnum;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -21,6 +23,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Table(name = "users")
@@ -42,14 +45,11 @@ public class UserEntity extends BaseEntity implements Serializable {
   @NotNull
   private LocalDate birthDate;
 
-  public LocalDate getBirthDate() {
-    return birthDate;
+  public UserEntity() {
+
   }
 
-  public UserEntity setBirthDate(LocalDate birthDate) {
-    this.birthDate = birthDate;
-    return this;
-  }
+
 
   @NotNull
   @Enumerated(EnumType.STRING)
@@ -76,6 +76,18 @@ public class UserEntity extends BaseEntity implements Serializable {
   private String password;
 
 
+@NotNull
+private String profilePicture;
+
+  public String getProfilePicture() {
+    return profilePicture;
+  }
+
+  public UserEntity setProfilePicture(String profilePicture) {
+    this.profilePicture = profilePicture;
+    return this;
+  }
+
   @Column(columnDefinition = "boolean default false")
   private boolean isActive;
   @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
@@ -96,8 +108,37 @@ public class UserEntity extends BaseEntity implements Serializable {
   private List<UserRole> roles = new ArrayList<>();
 
 
-  public UserEntity() {
+  public UserEntity(Optional<UserEntity> userEntity) {
 
+  }
+
+public UserEntity(UserEntity userEntity){
+    this.profilePicture = userEntity.getProfilePicture();
+     this.username = userEntity.getUsername();
+        this.email = userEntity.getEmail();
+        this.firstName = userEntity.getFirstName();
+        this.lastName = userEntity.getLastName();
+        this.birthDate = userEntity.getBirthDate();
+        this.sexEnum = userEntity.getSexEnum();
+        this.phoneNumber = userEntity.getPhoneNumber();
+        this.city = userEntity.getCity();
+        this.country = userEntity.getCountry();
+        this.createdOn = userEntity.getCreatedOn();
+        this.password = userEntity.getPassword();
+        this.isActive = userEntity.isActive();
+        this.fitnessPrograms = userEntity.getFitnessPrograms();
+        this.diets = userEntity.getDiets();
+        this.roles = userEntity.getRoles();
+
+}
+
+  public LocalDate getBirthDate() {
+    return birthDate;
+  }
+
+  public UserEntity setBirthDate(LocalDate birthDate) {
+    this.birthDate = birthDate;
+    return this;
   }
 
   public String getUsername() {

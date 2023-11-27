@@ -30,15 +30,26 @@
                         <li><a href="explore.html">Explore</a></li>
                         <li><a href="details.html">Item Details</a></li>
                         <li><a href="author.html">Author</a></li>
+                        <li><a href="/food/input">Nutrition Search</a></li>
+
                         <li><a href="">Blog</a></li>
                         <li sec:authorize="!isAuthenticated()">
                             <a class="nav-link" href="/users/register">Sign Up</a>
                         </li>
+
                         <li sec:authorize="!isAuthenticated()">
                             <a class="nav-link" href="/users/login">Sign In</a>
                         </li>
+
                         <li sec:authorize="hasRole('ROLE_COACH')">
                             <a class="nav-link" th:href="@{/coach/manager}">Manage Programs</a>
+                        </li>
+                        <li sec:authorize="isAuthenticated()">
+                            <a class="nav-link" th:href="@{'/users/update/' + ${userId}}">Update Profile</a>
+                        </li>
+
+                        <li sec:authorize="isAuthenticated()">
+                            <a class="nav-link" th:href="@{/users/logout}">Logout</a>
                         </li>
                     </ul>
                     <a class='menu-trigger'>

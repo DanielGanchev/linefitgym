@@ -1,7 +1,7 @@
 package com.appfitgym.service.impl;
 
-import com.appfitgym.model.dto.CityLoadDTO;
-import com.appfitgym.model.dto.CountryLoadDto;
+import com.appfitgym.model.dto.country.CityLoadDTO;
+import com.appfitgym.model.dto.country.CountryLoadDto;
 import com.appfitgym.repository.CityRepository;
 import com.appfitgym.repository.CountryRepository;
 import com.appfitgym.service.CountryService;

@@ -1,6 +1,6 @@
 package com.appfitgym.web;
 
-import com.appfitgym.model.dto.CityLoadDTO;
+import com.appfitgym.model.dto.country.CityLoadDTO;
 import com.appfitgym.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

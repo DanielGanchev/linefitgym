@@ -1,6 +1,7 @@
 package com.appfitgym.web;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,8 @@ public class LoginController {
     return "login";
   }
 
+
+
   @PostMapping("/users/login-error")
   public String failedLogin(@ModelAttribute("username") String username, Model model) {
 
@@ -29,4 +32,8 @@ public class LoginController {
     model.addAttribute("bad_credentials", true);
     return "login";
   }
+
+
+
+
 }

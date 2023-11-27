@@ -1,5 +1,6 @@
-package com.appfitgym.model.entities;
+package com.appfitgym.model.entities.country;
 
+import com.appfitgym.model.entities.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;

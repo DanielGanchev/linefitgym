@@ -1,5 +1,7 @@
-package com.appfitgym.model.entities;
+package com.appfitgym.model.entities.country;
 
+import com.appfitgym.model.entities.BaseEntity;
+import com.appfitgym.model.entities.UserEntity;
 import jakarta.persistence.*;
 
 import java.util.List;
