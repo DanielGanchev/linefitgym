@@ -50,4 +50,6 @@ public record UserRegistrationDto(
         MultipartFile profilePicture
         ) {
 
+
+
 }

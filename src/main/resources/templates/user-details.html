@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:insert="~{fragments/head-register}">
+
+    >
+
+</head>
+
+<body>
+
+<!-- ***** Preloader Start ***** -->
+<div th:replace="~{fragments/preloader}">
+
+
+</div>
+<!-- ***** Preloader End ***** -->
+
+<!-- ***** Header Area Start ***** -->
+<header th:replace="~{fragments/navbar}">
+
+</header>
+
+<!-- ***** Header Area End ***** -->
+
+
+
+<div class="register-form active" id="container">
+    <div class="form-container sign-up" >
+        <form th:method="PATCH" th:action="@{'/users/update/' + ${userId}}" th:object="${userUpdate}" enctype="multipart/form-data">
+
+                 ><h1>Update Details</h1>
+
+            <input type="text" class="form-control" id="username" placeholder="Username"
+                   th:field="*{username}"
+                   th:value="${userUpdate.getUsername()}"
+                   th:errorclass="bg-danger" />
+            <small th:if="${#fields.hasErrors('username')}"
+                   th:errors="*{username}"
+                   class="text-danger">Username error message</small>
+
+            <input type="text" class="form-control" id="firstName" placeholder="First Name"
+                   th:field="*{firstName}"
+                     th:value="${userUpdate.getFirstName()}"
+                   th:errorclass="bg-danger" />
+            <small th:if="${#fields.hasErrors('firstName')}"
+                   th:errors="*{firstName}"
+                   class="text-danger">First Name error message</small>
+
+            <input type="text" class="form-control" id="lastName" placeholder="Last Name"
+                   th:field="*{lastName}"
+                     th:value="${userUpdate.getLastName()}"
+                   th:errorclass="bg-danger" />
+            <small th:if="${#fields.hasErrors('lastName')}"
+                   th:errors="*{lastName}"
+                   class="text-danger">Last Name error message</small>
+
+            <input type="date" class="form-control" id="birthDate"
+                   th:field="*{birthDate}"
+                   th:value="${#temporals.format(userUpdate.getBirthDate(), 'yyyy-MM-dd')}"
+                   th:errorclass="bg-danger" />
+            <small th:if="${#fields.hasErrors('birthDate')}"
+                   th:errors="*{birthDate}"
+                   class="text-danger">Birth Date error message</small>
+            <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number"
+                   th:field="*{phoneNumber}"
+                        th:value="${userUpdate.getPhoneNumber()}"
+                   th:errorclass="bg-danger" />
+            <small th:if="${#fields.hasErrors('phoneNumber')}"
+                   th:errors="*{phoneNumber}"
+                   class="text-danger">Phone Number error message</small>
+            <select id="countryId"
+                    th:field="*{countryId}"
+                    th:errorclass="bg-danger">
+                <option value="">Select a country</option>
+                <th:block th:each="country: ${countries}">
+                    <option th:value="${country.id}" th:text="${country.name}" th:selected="${country.id == userUpdate.getCountryId()}" />
+                </th:block>
+            </select>
+            <small th:if="${#fields.hasErrors('countryId')}"
+                   th:errors="*{countryId}"
+                   class="text-danger">Language error message</small>
+
+            <!-- City dropdown -->
+            <select id="cityId" name="cityId" th:errorclass="is-invalid">
+                <option value="">Select a city</option>
+                <th:block th:each="city : ${cities}">
+                    <option th:value="${city.id}" th:text="${city.name}" th:selected="${city.id == userUpdate.getCityId()}" />
+                </th:block>
+            </select>
+            <small th:if="${#fields.hasErrors('cityId')}"
+                   th:errors="*{cityId}"
+                   class="text-danger">Language error message</small>
+
+
+            <select id="sexEnums"
+                    th:field="${userUpdate.sexEnum}"
+                    th:errorclass="is-invalid">
+                <option value="">Select a sex</option>
+                <th:block th:each="sexEnum : ${sexEnums}">
+                    <option th:value="${sexEnum}" th:text="${sexEnum}" th:selected="${sexEnum.name() == userUpdate.getSexEnum().name()}" />
+                </th:block>
+
+            </select>
+            <small  th:if="${#fields.hasErrors('sexEnum')}"
+                    th:errors="*{sexEnum}"
+
+                    class="text-danger">Language error message</small>
+
+
+            <img th:src="@{${userUpdate.getProfilePicturePath()}}"  alt="Profile Picture" />
+                <label for="profilePicture">Profile Picture</label>
+                <input type="file" id="profilePicture" class="form-control" name="profilePicture" />
+
+
+
+
+
+           <button  type="submit" class="btn btn-primary" sec:authorize="isAuthenticated()">Update</button>
+
+        </form >
+    </div>
+    <div class="form-container sign-in">
+
+
+
+    </div>
+    <div class="toggle-container">
+        <div class="toggle">
+            <div class="toggle-panel  toggle-leQDft">
+                <h1>Welcome!</h1>
+                <p>Update your personal data!</p>
+                <a  sec:authorize="!isAuthenticated()" class="hidden btn btn-link " id="login"  href="/users/login">Sign In</a>
+            </div>
+            <div class="toggle-panel toggle-right">
+                <h1>Hello, Friend!</h1>
+                <p>Update your personal data!</p>
+                <button class="hidden active" id="register">Register</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+<footer th:replace="~{fragments/footer}">
+
+</footer>
+
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="/jquery/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+
+<script src="/js/isotope.min.js"></script>
+<script src="/js/owl-carousel.js"></script>
+
+<script src="/js/custom.js"></script>
+<script src="/js/popup.js"></script>
+<script src="/js/script.js"></script>
+</body>
+</html>

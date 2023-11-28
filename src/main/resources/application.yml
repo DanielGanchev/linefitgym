@@ -2,12 +2,30 @@ logging:
   level:
     root: info
     org.springframework: info
+    org.springframework.security: debug
     com.linefit.linefitgymapp: debug
+
 
 LineFitGymApp:
   default:
     admin:
       pass: ${DEFAULT_ADMIN_PASS:topsecret}
+
+cloudinary:
+  cloud_name: danjpzd8z
+  api_key: 759599338768339
+  api_secret: ${SECRET}
+
+spring.mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+
 
 spring:
   application:
@@ -35,3 +53,17 @@ spring:
     hiddenmethod:
       filter:
         enabled: off
+
+  thymeleaf: # Thymeleaf
+    cache: false
+    mode: HTML
+    encoding: UTF-8
+  # change load path to resource folder instead of /target
+    prefix: file:src/main/resources/templates/
+
+  web:
+    resources:
+      static-locations: file:src/main/resources/static/
+      cache:
+        period: 0
+

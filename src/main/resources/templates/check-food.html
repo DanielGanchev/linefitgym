@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:insert="~{fragments/head-food}">
+
+    >
+
+</head>
+
+<body>
+
+<!-- ***** Preloader Start ***** -->
+<div th:replace="~{fragments/preloader}">
+
+
+</div>
+<!-- ***** Preloader End ***** -->
+
+<!-- ***** Header Area Start ***** -->
+<header th:replace="~{fragments/navbar}">
+
+</header>
+
+<div class="search-info">If you want to find your perfect food hover your mouse over!</div>
+
+<!-- ***** Header Area End ***** -->
+<div class="container-form">
+<form th:action="@{/food/table}" method="get">
+    <div class="searchBox">
+        <input class="searchInput" type="text" name="foodName"
+               th:attr="placeholder=${foodDataSize == 0 ? 'Couldn''t find the food, try again' : 'Search for food...'}">
+        <button class="searchButton" type="submit">
+            <i class="material-icons">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
+            </i>
+        </button>
+    </div>
+</form>
+
+    <div class="container-table" th:if="${foodData != null and foodData.size() > 0}">
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Caloric</th>
+            <th>Fat</th>
+            <th>Protein</th>
+            <th>Carbohydrate</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="food : ${foodData}">
+            <td th:text="${food.name}"></td>
+            <td th:text="${food.caloric}"></td>
+            <td th:text="${food.fat}"></td>
+            <td th:text="${food.protein}"></td>
+            <td th:text="${food.carbon}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+
+
+
+<footer th:replace="~{fragments/footer}">
+
+</footer>
+
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="/jquery/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+
+<script src="/js/isotope.min.js"></script>
+<script src="/js/owl-carousel.js"></script>
+
+<script src="/js/custom.js"></script>
+<script src="/js/popup.js"></script>
+<script src="/js/script.js"></script>
+</body>
+</html>

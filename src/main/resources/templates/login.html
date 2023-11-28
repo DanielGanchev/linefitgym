@@ -28,12 +28,14 @@
     <div class="form-container sign-up">
 
     </div>
+
     <div class="form-container sign-in sign-in-height">
         <form th:action="@{/users/login}" th:method="POST">
             <h1>Sign In</h1>
             <p th:if="${bad_credentials}" class="errors alert alert-danger">
                 Invalid username or password.
             </p>
+
             <input type="text" placeholder="Username" name="username" >
             <input type="password" placeholder="Password" name="password">
 

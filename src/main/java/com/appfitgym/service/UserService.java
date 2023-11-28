@@ -1,12 +1,14 @@
 package com.appfitgym.service;
 
 import com.appfitgym.model.dto.*;
+import com.appfitgym.model.entities.UserEntity;
 
+import java.io.IOException;
 import java.util.Optional;
 
 public interface UserService {
 
-    boolean register(UserRegistrationDto userRegistrationDto);
+    UserEntity register(UserRegistrationDto userRegistrationDto) throws IOException;
 
 
 
@@ -14,5 +16,9 @@ public interface UserService {
 
     Optional<UserUpdateValidationDto> getUserDetails(Long id);
 
-    void updateUser(Long id, UserUpdateValidationDto userUpdate);
+    void updateUser(Long id, UserUpdateValidationDto userUpdate) throws IOException;
+
+    void saveUserVerificationToken(UserEntity theUser, String verificationToken);
+
+    String validateToken(String theToken);
 }
