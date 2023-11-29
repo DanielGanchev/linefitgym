@@ -85,7 +85,8 @@ public class SecurityConfig implements WebMvcConfigurer {
                                 .rememberMeParameter("rememberme")
                                 .rememberMeCookieName("rememberme")
                                 .tokenValiditySeconds(60 * 60 * 24 * 14)
-                ) ;
+                ).exceptionHandling(exceptionHandling ->
+                        exceptionHandling.accessDeniedPage("/403"));;
 
 
 

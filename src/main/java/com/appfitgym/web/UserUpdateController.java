@@ -1,5 +1,6 @@
 package com.appfitgym.web;
 
+import com.appfitgym.model.dto.CustomerUserDetails;
 import com.appfitgym.model.dto.UserUpdateValidationDto;
 import com.appfitgym.model.dto.country.CountryLoadDto;
 import com.appfitgym.model.enums.SexEnum;
@@ -7,6 +8,9 @@ import com.appfitgym.model.enums.UserRoleEnum;
 import com.appfitgym.service.CountryService;
 import com.appfitgym.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -50,7 +54,12 @@ public class UserUpdateController {
   }
 
   @GetMapping("/update/{userId}")
+  @PreAuthorize("#userId == principal.getId()")
   public ModelAndView updateUser(@PathVariable("userId") Long userId, Model model) {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    CustomerUserDetails userDetails = (CustomerUserDetails) authentication.getPrincipal();
+    System.out.println("Principal ID: " + userDetails.getId());
+
     if (!model.containsAttribute("userUpdate")) {
       UserUpdateValidationDto userUpdate = userService.getUserDetails(userId)
               .orElseThrow(() -> new UsernameNotFoundException("User with name " + userId + " not found!"));
