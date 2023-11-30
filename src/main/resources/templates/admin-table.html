@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:insert="~{fragments/header-admin-table}">
+
+
+</head>
+
+<body>
+
+<!-- ***** Preloader Start ***** -->
+<div th:replace="~{fragments/preloader}">
+
+
+</div>
+<!-- ***** Preloader End ***** -->
+
+<!-- ***** Header Area Start ***** -->
+<header th:replace="~{fragments/navbar}">
+
+</header>
+
+<body>
+
+<div class="query">
+<form  class="search" th:action="@{/admin/search}" method="get">
+    <input  type="text" class="input-search" name="query" placeholder="Search query">
+    <button class="btn-search" type="submit" >Search</button>
+    <select name="field" class="query-field" >
+        <option value="username">Username</option>
+        <option value="email">Email</option>
+        <option value="firstName">First Name</option>
+        <option value="lastName">Last Name</option>
+        <option value="role">Role</option>
+        <option value="country">Country</option>
+        <option value="city">City</option>
+        <option value="age">Age</option>
+        <option value="status">Status</option>
+        <option value="createdOn">Start Date</option>
+    </select>
+
+</form>
+</div>
+
+
+
+<section>
+    <div class="container-admin-table">
+
+        <input type="checkbox" name="" id="toggleView"/>
+        <label for="toggleView" class="text-white"> Grid View </label>
+        <div>
+            <button class="btn btn-primary" onclick="window.location.href='/admin/all'">Show All</button>
+        </div>
+        <div style="overflow-y: auto; max-height: 450px;">
+        <table>
+            <thead>
+            <tr>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Age</th>
+                <th>Status</th>
+                <th>Start Date</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.getFullName()}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.role}"></td>
+                <td th:text="${user.country}"></td>
+                <td th:text="${user.city}"></td>
+                <td th:text="${user.age}"></td>
+                <td class="status"><span th:class="${user.status}" th:text="${user.status.toUpperCase()}"></span></td>
+                <td th:text="${user.createdOn}"></td>
+                <td>
+                <form th:action="@{/admin/delete}" th:method="DELETE">
+                    <input type="hidden" name="userId" th:value="${user.id}">
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</section>
+</body>
+
+
+
+
+
+<footer th:replace="~{fragments/footer}">
+
+</footer>
+
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="/jquery/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+
+<script src="/js/isotope.min.js"></script>
+<script src="/js/owl-carousel.js"></script>
+
+<script src="/js/custom.js"></script>
+<script src="/js/popup.js"></script>
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

@@ -28,10 +28,9 @@
                     <ul class="nav">
                         <li><a th:href="@{/}" class="active">Home</a></li>
                         <li><a href="explore.html">Explore</a></li>
-                        <li><a href="details.html">Item Details</a></li>
-                        <li><a href="author.html">Author</a></li>
+                        <li><a href="/gallery">Gallery</a></li>
                         <li><a href="/food/input">Nutrition Search</a></li>
-
+                        <li  sec:authorize="hasRole('ROLE_ADMIN')"><a href="/admin">Admin</a></li>
                         <li><a href="">Blog</a></li>
                         <li sec:authorize="!isAuthenticated()">
                             <a class="nav-link" href="/users/register">Sign Up</a>

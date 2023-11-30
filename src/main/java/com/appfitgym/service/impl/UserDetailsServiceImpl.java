@@ -7,11 +7,11 @@ import com.appfitgym.model.entities.UserRole;
 import com.appfitgym.repository.UserRepository;
 
 
-
-
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -39,6 +39,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }
+
+
         return new CustomerUserDetails (user);
     }
 
@@ -47,9 +49,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return User.withUsername(userEntity.getUsername())
                 .password(userEntity.getPassword())
                 .authorities(userEntity.getRoles().stream().map(UserDetailsServiceImpl::map).toList())
-
-
-
                 .build();
     }
 

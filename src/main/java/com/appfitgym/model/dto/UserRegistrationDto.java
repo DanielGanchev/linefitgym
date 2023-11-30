@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public record UserRegistrationDto(
         @NotEmpty(message = "Username cannot be empty!")
         @Size(min = 3, max = 20, message = "Username length must be between 3 and 20 characters!")
-        @UniqueUser
+        @UniqueUserOrTheSame
         String username,
         @NotEmpty(message = "First name cannot be empty!")
         @Size(min = 3, max = 20, message = "Username length must be between 3 and 20 characters!")
@@ -24,7 +24,8 @@ public record UserRegistrationDto(
         @Size(min = 3, max = 20, message = "Username length must be between 3 and 20 characters!")
         String lastName,
         @Email(message = "Please enter a valid email address!")
-        @UniqueUserEmail String email,
+        @UniqueUserEmail
+        @NotEmpty(message = "Email cannot be empty!") String email,
         @Size(min = 3, max = 20, message = "Password length must be between 3 and 20 characters!")
         @NotEmpty(message = "Password cannot be empty!")
         String password,

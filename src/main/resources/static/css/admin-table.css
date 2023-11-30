@@ -1,0 +1,188 @@
+
+
+body {
+
+    height: 100vh;
+    width: 100%;
+    justify-content: space-between;
+
+}
+
+section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+
+}
+
+.container-admin-table {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+
+      margin: 0 auto;
+    height: 100%;
+}
+
+.query{
+
+
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+
+
+}
+.search {
+    width: 80%;
+    height: 40px;
+    margin: 240px auto 0 auto;
+    background: #444;
+    background: rgba(0,0,0,.2);
+    border-radius:  3px;
+    border: 1px solid #fff;
+
+    .input-search {
+        width: 63%;
+        padding: 10px 5px;
+        float: left;
+        color: #ccc;
+        border: 0;
+        background: transparent;
+        border-radius: 3px 0 0 3px;
+        &:focus {
+            outline: 0;
+            background:transparent;
+        }
+    }
+
+    .btn-search {
+        position: relative;
+        float: right;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+        height: 40px;
+        width: 120px;
+        color: #fff;
+        background: transparent;
+        border-left: 1px solid #fff;
+        border-radius: 0 3px 3px 0;
+        &:hover {
+            background: #fff;
+            color:#444;
+        }
+        &:active {
+            box-shadow: 0px 0px 12px 0px rgba(225, 225, 225, 1);
+        }
+        &:focus {
+            outline: 0;
+        }
+    }
+}
+
+
+
+table {
+    width: 100%;
+    border-spacing: 0;
+    background-color: #FFFFFF;
+    font-size: 14px;
+}
+
+thead th {
+    color: #7A7A7A;
+    text-align: left;
+    background-color: #F9FAFC;
+}
+
+thead th, tbody td {
+    padding: 14px;
+    border: 0;
+    border-bottom: 1px solid #E7E7E7;
+}
+
+tbody td:first-child {
+    border-left: 4px solid transparent;
+    transition: all ease 0.3s;
+}
+
+tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+tbody tr:hover {
+    background-color: #F7F9FC;
+}
+
+tbody tr:hover td:first-child {
+    border-left-color: #0F6FDE;
+}
+
+td.status {
+    text-align: center;
+}
+
+td.status span {
+    font-size: 12px;
+    border-radius: 3px;
+    padding: 4px 8px;
+}
+
+td.status span.approved {
+    color: #FFFFFF;
+    background-color: #00C455;
+}
+
+td.status span.decline {
+    color: #FFFFFF;
+    background-color: #F13426;
+}
+
+td.status span.pending {
+    color: #132D4A;
+    background-color: #EBF0F5;
+}
+
+#toggleView:checked ~ table thead {
+    display: none;
+}
+
+#toggleView:checked ~ table tbody {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 4px;
+}
+
+#toggleView:checked ~ table tbody tr, #toggleView:checked ~ table tbody td {
+    display: block;
+    border: 0;
+}
+
+#toggleView:checked ~ table tbody td {
+    padding: 4px;
+    font-weight: bold;
+}
+
+#toggleView:checked ~ table tbody td:before {
+    content: attr(data-name);
+    width: 100px;
+    display: inline-block;
+    text-transform: capitalize;
+    font-weight: normal;
+}
+
+#toggleView:checked ~ table tbody td.status {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+}
+
+#toggleView:checked ~ table tbody tr {
+    position: relative;
+    width: calc(50% - 8px);
+    border: 1px solid #E7E7E7;
+    padding: 8px;
+    margin: 4px;
+}

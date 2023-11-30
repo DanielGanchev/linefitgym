@@ -26,6 +26,7 @@ font & reset css
 --------------------------------------------- 
 */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 /* 
 ---------------------------------------------
 reset
@@ -74,10 +75,11 @@ header, nav, section, article, aside, footer, hgroup {
 
 * {
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
 }
 
 html, body {
-  font-family: 'Roboto', sans-serif;
+
   font-weight: 400;
   background-color: #1e1e1e;
   font-size: 16px;
@@ -373,7 +375,11 @@ Header Style
 .header-area .main-nav {
   min-height: 80px;
   background: transparent;
+
+
   display: flex;
+  align-items: center;
+
   background-color: #fff;
   padding: 15px 30px;
   border-radius: 50px;
@@ -816,7 +822,7 @@ Banner Style
   position: absolute;
   width: 100%;
   margin: 0 auto;
-  bottom: -76px;
+
   text-align: center;
 }
 

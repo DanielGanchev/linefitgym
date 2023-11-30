@@ -2,6 +2,7 @@ package com.appfitgym.web;
 
 import com.appfitgym.model.dto.CustomerUserDetails;
 import com.appfitgym.model.dto.UserUpdateValidationDto;
+import com.appfitgym.model.dto.country.CityLoadDTO;
 import com.appfitgym.model.dto.country.CountryLoadDto;
 import com.appfitgym.model.enums.SexEnum;
 import com.appfitgym.model.enums.UserRoleEnum;
@@ -53,12 +54,12 @@ public class UserUpdateController {
     return countryService.getAllCountries();
   }
 
+
+
   @GetMapping("/update/{userId}")
   @PreAuthorize("#userId == principal.getId()")
   public ModelAndView updateUser(@PathVariable("userId") Long userId, Model model) {
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    CustomerUserDetails userDetails = (CustomerUserDetails) authentication.getPrincipal();
-    System.out.println("Principal ID: " + userDetails.getId());
+
 
     if (!model.containsAttribute("userUpdate")) {
       UserUpdateValidationDto userUpdate = userService.getUserDetails(userId)

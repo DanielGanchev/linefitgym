@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = UniqueUserOrTheSameValidator.class)
 public @interface UniqueUserOrTheSame {
 
-    String message() default "User should be unique";
+    String message() default "Username should be unique or Username Already Taken";
 
     Class<?>[] groups() default {};
 

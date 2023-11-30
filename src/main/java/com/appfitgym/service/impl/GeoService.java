@@ -47,7 +47,7 @@ public class GeoService {
 
     }
 
-    private void initializeCountriesAndCities() {
+    public void initializeCountriesAndCities() {
         List<CountryDTO> countries = getCountries();
         saveCountriesToDatabase(countries);
     }

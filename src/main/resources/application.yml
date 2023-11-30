@@ -2,7 +2,7 @@ logging:
   level:
     root: info
     org.springframework: info
-    org.springframework.security: debug
+    org.springframework.security: trace
     com.linefit.linefitgymapp: debug
 
 
@@ -42,7 +42,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    open-in-view: false
+    open-in-view: true
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
 
 <head th:replace="~{fragments/head}">
 
@@ -26,15 +28,15 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h6>Liberty NFT Market</h6>
-          <h2>View Item Details</h2>
-          <span>Home > <a href="#">Item Details</a></span>
+          <h6>LIne FIt Gym</h6>
+          <h2>View Member Details</h2>
+          <span>Home > <a href="#">Member Details</a></span>
           <div class="buttons">
             <div class="main-button">
-              <a href="explore.html">Explore Our Items</a>
+              <a href="explore.html">Explore our Gym</a>
             </div>
             <div class="border-button">
-              <a href="create.html">Create Your NFT</a>
+              <a href="/users/register">Create Your Account</a>
             </div>
           </div>
         </div>
@@ -48,18 +50,18 @@
         <div class="col-lg-12">
           <div class="section-heading">
             <div class="line-dec"></div>
-            <h2>View Details <em>For Item</em> Here.</h2>
+            <h2>View Members <em>Profile</em> Here.</h2>
           </div>
         </div>
         <div class="col-lg-7">
           <div class="left-image">
-            <img src="assets/images/item-details-01.jpg" alt="" style="border-radius: 20px;">
+            <img src="/images/item-details-01.jpg" alt="" style="border-radius: 20px;">
           </div>
         </div>
         <div class="col-lg-5 align-self-center">
           <h4>Dolores Haze Westworld Eye</h4>
           <span class="author">
-            <img src="assets/images/author-02.jpg" alt="" style="max-width: 50px; border-radius: 50%;">
+            <img src="/images/author-02.jpg" alt="" style="max-width: 50px; border-radius: 50%;">
             <h6>Liberty Artist<br><a href="#">@libertyart</a></h6>
           </span>
           <p>Lorem ipsum dolor sit amet, consectetu dipiscingei elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
@@ -81,9 +83,8 @@
             </div>
           </div>
           <form action="submit">
-            <label for="quantity-text">Place Bid:</label>
-            <input placeholder="1 ETH" class="quantity-text">
-            <button type="submit" id="form-submit" class="main-button">Submit Now</button>
+
+            <button type="submit" id="form-submit" class="main-button">View Details</button>
           </form>
         </div>
         <div class="col-lg-12">
@@ -105,7 +106,7 @@
               <div class="col-lg-4 col-md-6">
                 <div class="item">
                   <div class="left-img">
-                    <img src="assets/images/current-01.jpg" alt="">
+                    <img src="/images/current-01.jpg" alt="">
                   </div>
                   <div class="right-content">
                     <h4>David Walker</h4>
@@ -119,7 +120,7 @@
               <div class="col-lg-4 col-md-6">
                 <div class="item">
                   <div class="left-img">
-                    <img src="assets/images/current-02.jpg" alt="">
+                    <img src="/images/current-02.jpg" alt="">
                   </div>
                   <div class="right-content">
                     <h4>David Walker</h4>
@@ -133,7 +134,7 @@
               <div class="col-lg-4 col-md-6">
                 <div class="item">
                   <div class="left-img">
-                    <img src="assets/images/current-03.jpg" alt="">
+                    <img src="/images/current-03.jpg" alt="">
                   </div>
                   <div class="right-content">
                     <h4>David Walker</h4>
@@ -147,7 +148,7 @@
               <div class="col-lg-4 col-md-6">
                 <div class="item">
                   <div class="left-img">
-                    <img src="assets/images/current-02.jpg" alt="">
+                    <img src="/images/current-02.jpg" alt="">
                   </div>
                   <div class="right-content">
                     <h4>David Walker</h4>
@@ -161,7 +162,7 @@
               <div class="col-lg-4 col-md-6">
                 <div class="item">
                   <div class="left-img">
-                    <img src="assets/images/current-04.jpg" alt="">
+                    <img src="/images/current-04.jpg" alt="">
                   </div>
                   <div class="right-content">
                     <h4>David Walker</h4>
@@ -175,7 +176,7 @@
               <div class="col-lg-4 col-md-6">
                 <div class="item">
                   <div class="left-img">
-                    <img src="assets/images/current-01.jpg" alt="">
+                    <img src="/images/current-01.jpg" alt="">
                   </div>
                   <div class="right-content">
                     <h4>David Walker</h4>
@@ -199,12 +200,12 @@
         <div class="col-lg-8">
           <div class="section-heading">
             <div class="line-dec"></div>
-            <h2>Create Your NFT & Put It On The Market.</h2>
+            <h2>Find Your Perfect Fitness Program & Coach.</h2>
           </div>
         </div>
         <div class="col-lg-4">
-          <div class="main-button">
-            <a href="create.html">Create Your NFT Now</a>
+          <div class="main-button" sec:authorize="!isAuthenticated()">
+            <a href="/users/register">Start Your Fitness Journey Now</a>
           </div>
         </div>
         <div class="col-lg-4">
@@ -213,10 +214,10 @@
               <h6>1</h6>
             </div>
             <div class="icon">
-              <img src="assets/images/icon-02.png" alt="">
+              <img src="/images/icon-02.png" alt="">
             </div>
-            <h4>Set Up Your Wallet</h4>
-            <p>There are 5 different HTML pages included in this NFT <a href="https://templatemo.com/page/1" target="_blank" rel="nofollow">website template</a>. You can edit or modify any section on any page as you required.</p>
+            <h4>Find Your Motivation</h4>
+            <p>At LineFitGym, we believe in the power of motivation. Whether you're a beginner or a seasoned athlete, finding your motivation is the key to reaching your fitness goals. Explore our resources, connect with our community, and discover what drives you. Start your fitness journey with LineFitGym today!</p>
           </div>
         </div>
         <div class="col-lg-4">
@@ -225,19 +226,22 @@
               <h6>2</h6>
             </div>
             <div class="icon">
-              <img src="assets/images/icon-04.png" alt="">
+              <img src="/images/icon-04.png" alt="">
             </div>
-            <h4>Add Your Digital NFT</h4>
-            <p>If you would like to support our TemplateMo website, please visit <a rel="nofollow" href="https://templatemo.com/contact" target="_parent">our contact page</a> to make a PayPal contribution. Thank you.</p>
+            <h4>Find Your Coach</h4>
+            <p>If you're interested in joining our LineFitGym community, you can register as a coach or a trainee.
+              <span sec:authorize="!isAuthenticated()">Visit our <a href="/users/register">registration page</a> to get started.</span>
+              <span sec:authorize="isAuthenticated()">You are already training with us!.</span>
+              We look forward to welcoming you!</p>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="item">
             <div class="icon">
-              <img src="assets/images/icon-06.png" alt="">
+              <img src="/images/icon-06.png" alt="">
             </div>
-            <h4>Sell Your NFT &amp; Make Profit</h4>
-            <p>NFT means Non-Fungible Token that are used in digital cryptocurrency markets. There are many different kinds of NFTs in the industry.</p>
+            <h4>Start Your Fitness Program &amp; Achieve Your Goals</h4>
+            <p>LineFitGym offers a variety of fitness programs and coaches to help you achieve your fitness goals. Start your journey today!</p>
           </div>
         </div>
       </div>
@@ -256,7 +260,7 @@
   <script src="/js/isotope.min.js"></script>
   <script src="/js/owl-carousel.js"></script>
 
-  <script src="/js/tabs.js"></script>
+
   <script src="/js/popup.js"></script>
   <script src="/js/custom.js"></script>
   </body>

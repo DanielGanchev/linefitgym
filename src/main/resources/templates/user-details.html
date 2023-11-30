@@ -5,7 +5,7 @@
 
 <head th:insert="~{fragments/head-register}">
 
-    >
+
 
 </head>
 
@@ -31,7 +31,7 @@
     <div class="form-container sign-up" >
         <form th:method="PATCH" th:action="@{'/users/update/' + ${userId}}" th:object="${userUpdate}" enctype="multipart/form-data">
 
-                 ><h1>Update Details</h1>
+                 <h1>Update Details</h1>
 
             <input type="text" class="form-control" id="username" placeholder="Username"
                    th:field="*{username}"
@@ -84,7 +84,8 @@
                    class="text-danger">Language error message</small>
 
             <!-- City dropdown -->
-            <select id="cityId" name="cityId" th:errorclass="is-invalid">
+            <select id="cityId" name="cityId" th:errorclass="is-invalid"
+            th:field="*{cityId}">
                 <option value="">Select a city</option>
                 <th:block th:each="city : ${cities}">
                     <option th:value="${city.id}" th:text="${city.name}" th:selected="${city.id == userUpdate.getCityId()}" />
@@ -161,5 +162,6 @@
 <script src="/js/custom.js"></script>
 <script src="/js/popup.js"></script>
 <script src="/js/script.js"></script>
+
 </body>
 </html>
