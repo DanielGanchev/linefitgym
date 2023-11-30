@@ -53,7 +53,7 @@ public class GalleryServiceImpl implements GalleryService {
 
 
 
-    // Custom converter for calculating programsCount from fitness programs and diet programs
+
     Converter<UserEntity, Integer> toProgramsCount = new Converter<UserEntity, Integer>() {
         public Integer convert(MappingContext<UserEntity, Integer> context) {
             UserEntity user = context.getSource();
@@ -63,21 +63,21 @@ public class GalleryServiceImpl implements GalleryService {
         }
     };
 
-    // Custom converter for getting country name from Country entity
+
     Converter<Country, String> toCountryName = new Converter<Country, String>() {
         public String convert(MappingContext<Country, String> context) {
             return context.getSource().getName();
         }
     };
 
-    // Custom converter for getting city name from City entity
+
     Converter<City, String> toCityName = new Converter<City, String>() {
         public String convert(MappingContext<City, String> context) {
             return context.getSource().getName();
         }
     };
 
-// Add the custom converters to the model mapper
+
 
     @Override
     public RandomUserDto convertToDto(UserEntity userEntity) {
