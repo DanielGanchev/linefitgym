@@ -2170,3 +2170,11 @@ body {
 @media (max-width: 1200px) {
   
 }
+
+.random-img{
+  width: 100%;
+  height: auto;
+  max-width: 640px;
+  max-height: 470px;
+  object-fit: cover;
+}

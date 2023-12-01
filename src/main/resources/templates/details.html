@@ -55,35 +55,33 @@
         </div>
         <div class="col-lg-7">
           <div class="left-image">
-            <img src="/images/item-details-01.jpg" alt="" style="border-radius: 20px;">
+            <img th:src="${randomUser.profilePicture}"  class=" random-img" alt="" style="border-radius: 20px;">
           </div>
         </div>
         <div class="col-lg-5 align-self-center">
-          <h4>Dolores Haze Westworld Eye</h4>
+          <h4 th:text="${randomUser.fullName}"></h4>
           <span class="author">
-            <img src="/images/author-02.jpg" alt="" style="max-width: 50px; border-radius: 50%;">
-            <h6>Liberty Artist<br><a href="#">@libertyart</a></h6>
-          </span>
-          <p>Lorem ipsum dolor sit amet, consectetu dipiscingei elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <img th:src="${randomUser.profilePicture}" alt="" style="max-width: 50px; border-radius: 50%;">
+    <h6 th:text="${randomUser.email}"><br><a href="#"></a></h6>
+  </span>
           <div class="row">
             <div class="col-3">
-              <span class="bid">
-                Current Bid<br><strong>6.06 ETH</strong><br><em>($8,025.50)</em>
-              </span>
+      <span class="bid">
+        Age<br><strong th:text="${randomUser.age}"></strong><br><em></em>
+      </span>
             </div>
             <div class="col-4">
-              <span class="owner">
-                Owner<br><strong>David Walker</strong><br><em>(@davidwalker)</em>
-              </span>
+      <span class="owner">
+        Country<br><strong th:text="${randomUser.country}"></strong><br><em th:text="'City: ' + ${randomUser.city}"></em>
+      </span>
             </div>
             <div class="col-5">
-              <span class="ends">
-                Ends In<br><strong>3D 05H 20M 58S</strong><br><em>(January 22nd, 2021)</em>
-              </span>
+      <span class="ends">
+        Registred On<br><strong th:text="${randomUser.createdOn}"></strong><br><em></em>
+      </span>
             </div>
           </div>
           <form action="submit">
-
             <button type="submit" id="form-submit" class="main-button">View Details</button>
           </form>
         </div>
@@ -91,7 +89,7 @@
           <div class="current-bid">
             <div class="row">
               <div class="col-lg-6">
-                <div class="mini-heading"><h4>Current Biddings Prices ( ETH )</h4></div>
+                <div class="mini-heading"><h4>Current Memembers</h4></div>
               </div>
               <div class="col-lg-6">
                 <fieldset>
@@ -103,90 +101,23 @@
                   </select>
               </fieldset>
               </div>
-              <div class="col-lg-4 col-md-6">
+              <div th:each="randomUser : ${randomUsers}" class="col-lg-4 col-md-6">
                 <div class="item">
                   <div class="left-img">
-                    <img src="/images/current-01.jpg" alt="">
+                    <img th:src="${randomUser.profilePicture}" alt="">
                   </div>
                   <div class="right-content">
-                    <h4>David Walker</h4>
-                    <a href="#">@davidwalker</a>
+                    <h4 th:text="${randomUser.fullName}"></h4>
+                    <a href="#">@username</a>
                     <div class="line-dec"></div>
-                    <h6>Bid: <em>0.06 ETH</em></h6>
-                    <span class="date">24/07/2022, 22:00</span>
+                    <h6>Age: <em th:text="${randomUser.age}"></em></h6>
+                    <span class="date">Created On: <em th:text="${randomUser.createdOn}"></em></span>
+                    
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-6">
-                <div class="item">
-                  <div class="left-img">
-                    <img src="/images/current-02.jpg" alt="">
-                  </div>
-                  <div class="right-content">
-                    <h4>David Walker</h4>
-                    <a href="#">@davidwalker</a>
-                    <div class="line-dec"></div>
-                    <h6>Bid: <em>0.06 ETH</em></h6>
-                    <span class="date">24/07/2022, 22:00</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6">
-                <div class="item">
-                  <div class="left-img">
-                    <img src="/images/current-03.jpg" alt="">
-                  </div>
-                  <div class="right-content">
-                    <h4>David Walker</h4>
-                    <a href="#">@davidwalker</a>
-                    <div class="line-dec"></div>
-                    <h6>Bid: <em>0.06 ETH</em></h6>
-                    <span class="date">24/07/2022, 22:00</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6">
-                <div class="item">
-                  <div class="left-img">
-                    <img src="/images/current-02.jpg" alt="">
-                  </div>
-                  <div class="right-content">
-                    <h4>David Walker</h4>
-                    <a href="#">@davidwalker</a>
-                    <div class="line-dec"></div>
-                    <h6>Bid: <em>0.06 ETH</em></h6>
-                    <span class="date">24/07/2022, 22:00</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6">
-                <div class="item">
-                  <div class="left-img">
-                    <img src="/images/current-04.jpg" alt="">
-                  </div>
-                  <div class="right-content">
-                    <h4>David Walker</h4>
-                    <a href="#">@davidwalker</a>
-                    <div class="line-dec"></div>
-                    <h6>Bid: <em>0.06 ETH</em></h6>
-                    <span class="date">24/07/2022, 22:00</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6">
-                <div class="item">
-                  <div class="left-img">
-                    <img src="/images/current-01.jpg" alt="">
-                  </div>
-                  <div class="right-content">
-                    <h4>David Walker</h4>
-                    <a href="#">@davidwalker</a>
-                    <div class="line-dec"></div>
-                    <h6>Bid: <em>0.06 ETH</em></h6>
-                    <span class="date">24/07/2022, 22:00</span>
-                  </div>
-                </div>
-              </div>
+
+
             </div>
           </div>
         </div>

@@ -19,6 +19,17 @@ public class RandomUserDto {
 
     private int programsCount;
 
+    private String roles;
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public RandomUserDto setRoles(String role) {
+        this.roles = role;
+        return this;
+    }
+
     public Long getId() {
         return id;
     }

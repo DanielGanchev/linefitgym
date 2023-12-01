@@ -3,6 +3,7 @@ package com.appfitgym.service.impl;
 
 import com.appfitgym.model.dto.RandomUserDto;
 import com.appfitgym.model.entities.UserEntity;
+import com.appfitgym.model.entities.UserRole;
 import com.appfitgym.model.entities.country.City;
 import com.appfitgym.model.entities.country.Country;
 import com.appfitgym.repository.UserRepository;
@@ -15,7 +16,11 @@ import org.modelmapper.spi.MappingContext;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -35,6 +40,8 @@ public class GalleryServiceImpl implements GalleryService {
                     mapper.using(toCountryName).map(UserEntity::getCountry, RandomUserDto::setCountry);
                     mapper.using(toCityName).map(UserEntity::getCity, RandomUserDto::setCity);
                     mapper.using(toFullName).map(src -> src, RandomUserDto::setFullName);
+                    mapper.using(toRoleName).map(src -> src, RandomUserDto::setRoles);
+                    mapper.using(toCreatedOn).map(UserEntity::getCreatedOn, RandomUserDto::setCreatedOn);
                 });
     }
 
@@ -48,6 +55,13 @@ public class GalleryServiceImpl implements GalleryService {
         public String convert(MappingContext<UserEntity, String> context) {
             UserEntity user = context.getSource();
             return user.getFirstName() + " " + user.getLastName();
+        }
+    };
+
+    Converter<LocalDateTime, String> toCreatedOn = new Converter<LocalDateTime, String>() {
+        public String convert(MappingContext<LocalDateTime, String> context) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            return context.getSource().format(formatter);
         }
     };
 
@@ -77,7 +91,20 @@ public class GalleryServiceImpl implements GalleryService {
         }
     };
 
-
+  Converter<UserEntity, String> toRoleName =
+      new Converter<UserEntity, String>() {
+        public String convert(MappingContext<UserEntity, String> context) {
+          UserEntity user = context.getSource();
+          for (UserRole role : user.getRoles()) {
+            if (role.getRole().name().equals("COACH")) {
+              return "Coach";
+            } else if (role.getRole().name().equals("TRAINEE")) {
+              return "Trainee";
+            }
+          }
+            return "";
+      };
+        };
 
     @Override
     public RandomUserDto convertToDto(UserEntity userEntity) {
@@ -88,5 +115,12 @@ public class GalleryServiceImpl implements GalleryService {
     public RandomUserDto getRandomUser() {
         UserEntity userEntity = userRepository.getRandomUser();
         return convertToDto(userEntity);
+    }
+
+    @Override
+    public List<RandomUserDto> getRandomUsers() {
+        List<UserEntity> userEntities = userRepository.getRandomUsers();
+        return userEntities.stream().map(this::convertToDto).collect(Collectors.toList());
+
     }
 }

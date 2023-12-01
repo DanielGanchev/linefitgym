@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/gallery")
 public class UserGalleryController {
@@ -23,11 +25,18 @@ public class UserGalleryController {
     public ModelAndView gallery(Model model) {
 
           RandomUserDto randomUserDto = galleryService.getRandomUser();
+        List<RandomUserDto> randomUsers = galleryService.getRandomUsers();
+
+
 
             model.addAttribute("randomUser", randomUserDto);
+            model.addAttribute("randomUsers", randomUsers);
 
             return new ModelAndView("details");
     }
+
+
+
 
 
 
