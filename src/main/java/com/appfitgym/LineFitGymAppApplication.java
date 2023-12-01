@@ -17,20 +17,7 @@ public class LineFitGymAppApplication {
     public static void main(String[] args) {
         SpringApplication.run(LineFitGymAppApplication.class, args);
 
-        String input = "12345";
-        String result ="";
-        Integer length = input.length();
 
-         if (length % 2 == 0) {
-            int half = length / 2;
-            result = String.valueOf(input.charAt(half-1) + input.charAt(half));
-
-
-
-         } else {
-                int half = length / 2;
-                result = String.valueOf(input.charAt(half));
-         }
 
 
 
