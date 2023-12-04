@@ -33,3 +33,10 @@ values (1, 1)  ,
        ), (14, 3),
           (15, 2
          );
+
+INSERT INTO blogs (title, description, author, date, image, user_id)
+VALUES ('Fitness Tips for Beginners', 'This blog post provides useful tips for people who are new to fitness.', 'John Doe', '2023-11-28 20:35:47.999999', 'http://res.cloudinary.com/danjpzd8z/image/upload/v1701434763/rjq0ugfgtdiqazleupla.jpg', 2),
+('Fitness Tips for Beginners', 'This blog post provides useful tips for people who are new to fitness.', 'John Doe', '2023-12-01 14:43:50.857098', 'http://res.cloudinary.com/danjpzd8z/image/upload/v1701434763/rjq0ugfgtdiqazleupla.jpg', 3),
+('Fitness Tips for Beginners', 'This blog post provides useful tips for people who are new to fitness.', 'John Doe', '2023-11-28 17:11:56.055917', 'http://res.cloudinary.com/danjpzd8z/image/upload/v1701434763/rjq0ugfgtdiqazleupla.jpg', 4),
+ ('Fitness Tips for Beginners', 'This blog post provides useful tips for people who are new to fitness.', 'John Doe', '2023-11-28 15:53:23.608344', 'http://res.cloudinary.com/danjpzd8z/image/upload/v1701434763/rjq0ugfgtdiqazleupla.jpg', 6),
+ ('Fitness Tips for Beginners', 'This blog post provides useful tips for people who are new to fitness.', 'John Doe', '2023-12-01 14:43:50.857098', 'http://res.cloudinary.com/danjpzd8z/image/upload/v1701434763/rjq0ugfgtdiqazleupla.jpg', 8);

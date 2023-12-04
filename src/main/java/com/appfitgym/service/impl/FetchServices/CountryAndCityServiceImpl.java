@@ -1,4 +1,4 @@
-package com.appfitgym.service.impl;
+package com.appfitgym.service.impl.FetchServices;
 
 import com.appfitgym.model.dto.country.CityLoadDTO;
 import com.appfitgym.model.dto.country.CountryLoadDto;

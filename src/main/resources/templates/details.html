@@ -104,15 +104,16 @@
               <div th:each="randomUser : ${randomUsers}" class="col-lg-4 col-md-6">
                 <div class="item">
                   <div class="left-img">
-                    <img th:src="${randomUser.profilePicture}" alt="">
+                    <img  th:src="${randomUser.profilePicture}" alt="">
                   </div>
                   <div class="right-content">
                     <h4 th:text="${randomUser.fullName}"></h4>
                     <a href="#">@username</a>
                     <div class="line-dec"></div>
                     <h6>Age: <em th:text="${randomUser.age}"></em></h6>
-                    <span class="date">Created On: <em th:text="${randomUser.createdOn}"></em></span>
-                    
+                    <span class="date">Programs Made: <em th:text="${randomUser.programsCount}"></em></span>
+                    <span  class="date country" th:title="${randomUser.country}">Country : <em th:text="${randomUser.country}"></em></span>
+
                   </div>
                 </div>
               </div>

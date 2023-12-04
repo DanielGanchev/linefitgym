@@ -1,20 +1,44 @@
 package com.appfitgym.model.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "fitness_programs")
 public class FitnessProgram extends BaseEntity{
 
+    @NotNull
     private String name;
+    @NotNull
     private String description;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private UserEntity userEntity;
+    private UserEntity createdBy;
+
+    @ManyToMany(mappedBy = "fitnessPrograms")
+    private List<UserEntity> users = new ArrayList<>();
+
+    public UserEntity getCreatedBy() {
+        return createdBy;
+    }
+
+    public FitnessProgram setCreatedBy(UserEntity createdBy) {
+        this.createdBy = createdBy;
+        return this;
+    }
+
+    public List<UserEntity> getUsers() {
+        return users;
+    }
+
+    public FitnessProgram setUsers(List<UserEntity> users) {
+        this.users = users;
+        return this;
+    }
 
     public String getName() {
         return name;
@@ -34,12 +58,5 @@ public class FitnessProgram extends BaseEntity{
         return this;
     }
 
-    public UserEntity getUser() {
-        return userEntity;
-    }
 
-    public FitnessProgram setUser(UserEntity userEntity) {
-        this.userEntity = userEntity;
-        return this;
-    }
 }

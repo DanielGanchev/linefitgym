@@ -1,0 +1,146 @@
+
+
+
+
+
+#version{
+    color: white;
+    font-size: 10px;
+    position: relative;
+    top: 12px;
+    left: 122px;
+}
+
+
+.current{
+    background-color: #383838;
+    border-radius: 3px;
+}
+#adbanner{
+    margin-top: 50px;
+    height: 124px;
+    background-color: #dbdbdb;
+    border-bottom: 1px solid #c3c3c3;
+}
+
+section{
+    width: 80vw;
+    margin: auto;
+
+}
+#secwrapper{
+    /*background: url('images/bg.gif') fixed;
+    background-color: #f47771;*/
+    padding-top: 20px;
+    background-image: url(../images/banner-bg.jpg) ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+article{
+    width: 400px;
+
+    margin-right: 40px;
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid #c8c8c8;
+    margin-bottom: 20px;
+    padding: 7px;
+    border-radius: 3px;
+    box-shadow: 0 2px 3px #ccc;
+    background-color: white;
+    *display:inline;
+    zoom:1;
+}
+
+.card-text{
+    font-size: 14px;
+    color: #6b6b6b;
+    margin-bottom: 7px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    white-space: pre-wrap;
+
+}
+
+
+
+.readmore{
+    background-color: #7453fc;
+    padding: 5px 10px;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+    display: inline-block;
+}
+.readmore:hover{
+    background-color: #5e3de8;
+    color: white;
+
+}
+
+article h1{
+     margin: auto 20px;
+    color: #3f3f3f;
+    font-size: 18px;
+
+}
+
+.author > span{
+
+    margin-right: 10px;
+    color: #3f3f3f;
+    font-size: 18px;
+
+
+}
+.author {
+    margin-top : 10px;
+}
+
+#photobox img{
+    margin: 5px 4px 6px 6.5px;
+    border: 1px solid black;
+}
+#sponsors a{
+    color: #6b6b6b;
+    text-decoration: none;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 14px;
+    background-color: #d1d1d1;
+    width: 125px;
+    height: 125px;
+    display: inline-block;
+    margin: 5px 4px 6px 7px;
+    border: 1px solid #c3c3c3;
+}
+#sponsors a p{
+    margin: 50px auto;
+    width: 125px;
+    text-align: center;
+}
+#sponsors a:hover{
+    border: 1px solid #a7a7a7;
+    /*text-decoration: underline;*/
+    color: #3f3f3f;
+    background-color: #cacaca;
+}
+#featured{
+    position: relative;
+}
+#featuredico{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+
+.old_ie header h1, .old_ie nav, .old_ie nav li, .old_ie #adbanner a, .old_ie article, .old_ie .readmore, .old_ie #sponsors a {
+    display: inline;
+    zoom: 1;
+}
+

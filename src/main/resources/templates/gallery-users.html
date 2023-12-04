@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head}">
+
+</head>
+
+<body>
+
+<!-- ***** Preloader Start ***** -->
+<div th:replace="~{fragments/preloader}">
+
+
+</div>
+<!-- ***** Preloader End ***** -->
+
+<!-- ***** Header Area Start ***** -->
+<header th:replace="~{fragments/navbar}">
+
+
+</header>
+<!-- ***** Header Area End ***** -->
+
+<div class="page-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h6>Line Fit Gym</h6>
+                <h2>Find Some Of Our Blogs</h2>
+                <span>Home > <a href="#">Blogs</a></span>
+            </div>
+        </div>
+    </div>
+    <div class="featured-explore">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="owl-features owl-carousel">
+                        <div class="item">
+                            <div class="thumb">
+                                <img src="/images/featured-01.jpg" alt="" style="border-radius: 20px;">
+                                <div class="hover-effect">
+                                    <div class="content">
+                                        <h4>Triple Mutant Ape Bored</h4>
+                                        <span class="author">
+                        <img src="/images/author.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                        <h6>Liberty Artist<br><a href="#">@libertyart</a></h6>
+                      </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="thumb">
+                                <img src="/images/featured-02.jpg" alt="" style="border-radius: 20px;">
+                                <div class="hover-effect">
+                                    <div class="content">
+                                        <h4>Bored Ape Kennel Club</h4>
+                                        <span class="author">
+                        <img src="/images/author.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                        <h6>Liberty Artist<br><a href="#">@libertyart</a></h6>
+                      </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="thumb">
+                                <img src="/images/featured-03.jpg" alt="" style="border-radius: 20px;">
+                                <div class="hover-effect">
+                                    <div class="content">
+                                        <h4>Genesis Club by KMT</h4>
+                                        <span class="author">
+                        <img src="/images/author.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                        <h6>Liberty Artist<br><a href="#">@libertyart</a></h6>
+                      </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="thumb">
+                                <img src="/images/featured-04.jpg" alt="" style="border-radius: 20px;">
+                                <div class="hover-effect">
+                                    <div class="content">
+                                        <h4>Crypto Aurora Guy</h4>
+                                        <span class="author">
+                        <img src="/images/author.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                        <h6>Liberty Artist<br><a href="#">@libertyart</a></h6>
+                      </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="discover-items">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="section-heading">
+                    <div class="line-dec"></div>
+                    <h2>Search Some Of Our Members.</em>.</h2>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <form id="search-form" name="gs" method="get" role="search" th:action="@{/findUsers/search}">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <fieldset>
+                                <input type="text" name="query" class="searchText" placeholder="Search..." >
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-3">
+                            <fieldset>
+                                <select name="field" class="form-select" aria-label="Default select example" id="chooseCategory" onchange="this.form.click()">
+                                    <option selected>All Categories</option>
+                                    <option value="firstName">First Name</option>
+                                    <option value="lastName">Last Name</option>
+                                    <option value="age">Age</option>
+                                    <option value="country">Country</option>
+                                    <option value="coaches">Coaches</option>
+                                    <option value="trainees">Trainees</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-2">
+                            <fieldset>
+                                <button class="main-button">Search</button>
+                            </fieldset>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-3" th:each="user : ${users}">
+                <div class="item">
+                    <div class="row">
+                        <div class="col-lg-12">
+
+
+                            <img th:src="${user.profilePictureUrl}" alt="" style="border-radius: 20px; margin-top: 0px">
+                            <h4 th:text="${user.fullName}"></h4>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="line-dec"></div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <span>Age: <br> <strong th:text="${user.age}"></strong></span>
+                                </div>
+                                <div class="col-6">
+                                    <span class="country-gallery" th:title="${user.country}">Country: <br> <strong th:text="${user.country}"></strong></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="main-button">
+                                <a href="details.html">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-primary" th:onclick="'window.location.href=\'/findUsers?page=' + (${users.number - 1}) + '\''" th:disabled="${users.first}">Previous</button>
+            </div>
+            <div>
+                <button class="btn btn-primary" th:onclick="'window.location.href=\'/findUsers?page=' + (${users.number + 1}) + '\''" th:disabled="${users.last}">Next</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="top-seller">
+    <div class="container">
+        <div class="row" >
+            <div class="col-lg-12">
+                <div class="section-heading">
+                    <div class="line-dec"></div>
+                    <h2>Our Top Coaches This Week.</h2>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6"   th:each="coach : ${topCoaches}">
+                <div class="row">
+                    <div class="row-lg-12" >
+                        <div class="item">
+                            <h4 th:text="${coachStat.index + 1}"></h4>
+                            <img th:src="${coach.profilePictureUrl}" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                            <h6 th:text="${coach.fullName}"><br><a href="#"></a></h6>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Repeat the above div for each coach in the list -->
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{fragments/footer}">
+
+</footer>
+
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="/jquery/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+
+<script src="/js/isotope.min.js"></script>
+<script src="/js/owl-carousel.js"></script>
+
+<script src="/js/tabs.js"></script>
+<script src="/js/popup.js"></script>
+<script src="/js/custom.js"></script>
+
+</body>
+</html>

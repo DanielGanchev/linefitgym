@@ -3,8 +3,10 @@ package com.appfitgym.service.impl;
 import com.appfitgym.config.UserSpecification;
 import com.appfitgym.model.dto.UserDetailsAdminPage;
 import com.appfitgym.model.entities.UserEntity;
+
 import com.appfitgym.repository.*;
 import com.appfitgym.service.AdminService;
+
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,10 +39,9 @@ public AdminServiceImpl(UserRepository userRepository, UserRoleRepository userRo
 
 }
 
-@Override
+    @Override
     public Page<UserDetailsAdminPage> findAllUsers(Pageable pageable) {
-        return userRepository.findAll(pageable).map(AdminServiceImpl::mapAsUserDetailsAdminPage);
-
+           return userRepository.findAllWithoutAdminEveryStatus(pageable).map(AdminServiceImpl::mapAsUserDetailsAdminPage);
     }
 
     private static UserDetailsAdminPage mapAsUserDetailsAdminPage(UserEntity userEntity) {
@@ -79,11 +80,11 @@ public AdminServiceImpl(UserRepository userRepository, UserRoleRepository userRo
         return Period.between(birthDate, currentDate).getYears();
     }
 
-    @Override
-    public Page<UserDetailsAdminPage> searchUsers(String query, String field, Pageable pageable) {
-        Specification<UserEntity> spec = new UserSpecification(field, query);
-        return userRepository.findAll(spec, pageable).map(AdminServiceImpl::mapAsUserDetailsAdminPage);
-    }
+  @Override
+  public Page<UserDetailsAdminPage> searchUsers(String query, String field, Pageable pageable) {
+    Specification<UserEntity> spec = new UserSpecification(field, query);
+    return userRepository.findAll(spec, pageable).map(AdminServiceImpl::mapAsUserDetailsAdminPage);
+  }
 
    @Override
     @Transactional

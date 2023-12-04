@@ -19,7 +19,7 @@
 <!-- ***** Preloader End ***** -->
 
 <!-- ***** Header Area Start ***** -->
-<header th:replace="~{fragments/navbar}">
+<header th:replace="~{fragments/navbar}" id="preloader">
 
 </header>
 
@@ -29,7 +29,8 @@
         <form th:action="@{/users/register}"
               th:object="${userRegisterBindingModel}"
               th:method="POST"
-              enctype="multipart/form-data">
+              enctype="multipart/form-data"
+      >
             <h1>Create Account</h1>
 
             <div th:if="${hasRegistrationError}" class="text-danger">Registration Error occurred</div>
@@ -144,7 +145,7 @@
 
 
 
-            <button>Sign Up</button>
+            <button type="submit" id="submit-button">Sign Up</button>
         </form>
     </div>
     <div class="form-container sign-in">
@@ -183,6 +184,18 @@
 <script src="/js/custom.js"></script>
 <script src="/js/popup.js"></script>
 <script src="/js/script.js"></script>
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        // Disable the submit button
+        document.getElementById('submit-button').disabled = true;
+
+        // Show the preloader
+        document.getElementById('preloader').style.display = 'block';
+
+        // Prevent the default form submission
+        event.preventDefault();
+    });
+</script>
 
 </body>
 </html>

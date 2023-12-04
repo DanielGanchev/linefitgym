@@ -72,7 +72,7 @@ public class GalleryServiceImpl implements GalleryService {
         public Integer convert(MappingContext<UserEntity, Integer> context) {
             UserEntity user = context.getSource();
             int fitnessProgramsCount = user.getFitnessPrograms().size();
-            int dietProgramsCount = user.getDiets().size();
+            int dietProgramsCount = user.getDietPrograms().size();
             return fitnessProgramsCount + dietProgramsCount;
         }
     };

@@ -40,12 +40,12 @@ private final AdminService adminService;
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
   @GetMapping("/all")
-  public String all(Model model, @PageableDefault(size = 13, sort = "username") Pageable pageable) {
+  public String all(Model model, @PageableDefault(size = 9, sort = "username") Pageable pageable) {
 
-      List<UserDetailsAdminPage> userList = adminService.findAllUsers(pageable).stream().filter(x -> !x.getRole().equals("ADMIN")).collect(Collectors.toList());
-      Page<UserDetailsAdminPage> allOffers = new PageImpl<>(userList, pageable, userList.size());
 
-    model.addAttribute("users", allOffers);
+Page<UserDetailsAdminPage> allUsers = adminService.findAllUsers(pageable);
+
+    model.addAttribute("users", allUsers);
 
     return "admin-table";
 
@@ -53,7 +53,7 @@ private final AdminService adminService;
 
         @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/search")
-    public String search(Model model, @RequestParam String query, @RequestParam String field, @PageableDefault(size = 11, sort = "username") Pageable pageable) {
+    public String search(Model model, @RequestParam String query, @RequestParam String field, @PageableDefault(size = 4, sort = "username") Pageable pageable) {
         List<UserDetailsAdminPage> userList = adminService.searchUsers(query, field, pageable).stream().filter(x -> !x.getRole().equals("ADMIN")).collect(Collectors.toList());
         Page<UserDetailsAdminPage> allOffers = new PageImpl<>(userList, pageable, userList.size());
 

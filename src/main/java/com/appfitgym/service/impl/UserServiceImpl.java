@@ -105,7 +105,7 @@ public class UserServiceImpl implements UserService {
       return ((CustomerUserDetails) principal).getId();
     }
 
-    // Handle the case when the principal is not of the expected type
+
     return null;
   }
 

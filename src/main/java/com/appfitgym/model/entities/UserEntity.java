@@ -90,12 +90,27 @@ private String profilePicture;
 
   @Column(columnDefinition = "boolean default false")
   private boolean isActive;
-  @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
-  private List<FitnessProgram> fitnessPrograms;
+  @ManyToMany
+  @JoinTable(
+          name = "user_programs",
+          joinColumns = @JoinColumn(name = "user_id"),
+          inverseJoinColumns = @JoinColumn(name = "program_id")
+  )
+  private List<FitnessProgram> fitnessPrograms = new ArrayList<>();
 
 
+  @ManyToMany
+  @JoinTable(
+          name = "user_diets",
+          joinColumns = @JoinColumn(name = "user_id"),
+          inverseJoinColumns = @JoinColumn(name = "diet_id")
+  )
+  private List<DietProgram> dietPrograms = new ArrayList<>();
+
   @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
-  private List<Diet> diets;
+  private List<Blog> blogs = new ArrayList<>();
+
+
 
 
   @NotNull
@@ -127,10 +142,20 @@ public UserEntity(UserEntity userEntity){
         this.password = userEntity.getPassword();
         this.isActive = userEntity.isActive();
         this.fitnessPrograms = userEntity.getFitnessPrograms();
-        this.diets = userEntity.getDiets();
+        this.dietPrograms = userEntity.getDietPrograms();
         this.roles = userEntity.getRoles();
+        this.blogs = userEntity.getBlogs();
 
 }
+
+  public List<Blog> getBlogs() {
+    return blogs;
+  }
+
+  public UserEntity setBlogs(List<Blog> blogs) {
+    this.blogs = blogs;
+    return this;
+  }
 
   public LocalDate getBirthDate() {
     return birthDate;
@@ -250,12 +275,12 @@ public UserEntity(UserEntity userEntity){
     return this;
   }
 
-  public List<Diet> getDiets() {
-    return diets;
+  public List<DietProgram> getDietPrograms() {
+    return dietPrograms;
   }
 
-  public UserEntity setDiets(List<Diet> diets) {
-    this.diets = diets;
+  public UserEntity setDietPrograms(List<DietProgram> dietPrograms) {
+    this.dietPrograms = dietPrograms;
     return this;
   }
 

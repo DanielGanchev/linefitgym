@@ -49,11 +49,12 @@
 <section>
     <div class="container-admin-table">
 
-        <input type="checkbox" name="" id="toggleView"/>
-        <label for="toggleView" class="text-white"> Grid View </label>
         <div>
             <button class="btn btn-primary" onclick="window.location.href='/admin/all'">Show All</button>
+            <button class="btn btn-primary" th:if="${users != null}" th:onclick="'window.location.href=\'/admin/all?page=' + (${users.number - 1}) + '\''" th:disabled="${users.first}">Previous</button>
+            <button class="btn btn-primary" th:if="${users != null}" th:onclick="'window.location.href=\'/admin/all?page=' + (${users.number + 1}) + '\''" th:disabled="${users.last}">Next</button>
         </div>
+
         <div style="overflow-y: auto; max-height: 450px;">
         <table>
             <thead>
