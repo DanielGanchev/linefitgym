@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+
+<head th:replace="~{fragments/head-single-post}">
+
+</head>
+
+<body>
+
+<!-- ***** Preloader Start ***** -->
+<div th:replace="~{fragments/preloader}">
+
+
+</div>
+<!-- ***** Preloader End ***** -->
+
+<!-- ***** Header Area Start ***** -->
+<header th:replace="~{fragments/navbar}">
+
+
+</header>
+<!-- ***** Header Area End ***** -->
+
+<div class="page-heading normal-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h6>LIne FIt Gym</h6>
+                <h2>Read Out Member Blogs</h2>
+                <span>Home > <a href="#">Blogs</a></span>
+                <div class="buttons">
+                    <div class="main-button">
+                        <a sec:authorize="isAuthenticated()" href="/findUsers">Find Members</a>
+                    </div>
+                    <div class="border-button">
+                        <a href="/food/input">Nutriotion Search</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Begin Article
+================================================== -->
+<div class="main-background">
+<div class="container">
+    <div class="row">
+
+
+
+        <!-- Begin Post -->
+        <div class="col-md-8 col-md-offset-2 col-xs-12">
+            <div class="mainheading">
+
+                <!-- Begin Top Meta -->
+                <div class="row post-top-meta">
+                    <div class="col-md-1 icon-overheader">
+                        <a th:href="@{/view/users/details/{id}(id=${blog.authorId})}"><img class="author-thumb" th:src="${blog.authorImage}"></a>
+                    </div>
+                    <div class="col-md-10">
+                        <div>
+                        <a class="link-dark" th:href="@{/view/users/details/{id}(id=${blog.authorId})}" th:text="${blog.author}">Sal</a><a class="btn follow" th:href="@{/view/users/details/{id}(id=${blog.authorId})}">Details</a>
+                        </div>
+                        <span class="post-date" th:text="${blog.date}">22 July 2017</span><span class="dot"></span>
+                    </div>
+                </div>
+                <!-- End Top Menta -->
+
+                <h1 class="posttitle" th:text="${blog.title}">18 Things You Should Learn Before Moving Into a New Home</h1>
+
+            </div>
+
+            <!-- Begin Featured Image -->
+            <img class="featured-image img-fluid" th:src="${blog.image}" alt="">
+            <!-- End Featured Image -->
+
+            <!-- Begin Post Content -->
+            <div class="article-post" th:text="${blog.description}">
+
+            </div>
+            <!-- End Post Content -->
+
+            <!-- Begin Tags -->
+
+            <!-- End Tags -->
+
+        </div>
+        <!-- End Post -->
+
+    </div>
+</div>
+<!-- End Article
+================================================== -->
+
+<div class="hideshare"></div>
+
+<!-- Begin Related
+================================================== -->
+<div class="graybg">
+    <div class="container">
+        <div class="row listrecent listrelated" >
+
+            <!-- begin post -->
+            <div class="col-md-4" th:each="otherblog : ${otherUsersBlogs}">
+                <div class="card">
+
+                    <div class="card-block">
+                        <h2 class="card-title"> <a th:href="@{'/blog/single/' + ${otherblog.id}}" th:text="${otherblog.title}"></a></h2>
+                        <div class="metafooter">
+                            <div class="wrapfooter">
+								<span class="meta-footer-thumb">
+								<a th:href="@{/view/users/details/{id}(id=${otherblog.authorId})}"><img class="author-thumb" th:src="${otherblog.authorImage}" alt="Sal"></a>
+								</span>
+                                <span class="author-meta">
+								<span class="post-name"><a th:href="@{/view/users/details/{id}(id=${otherblog.authorId})}" th:text="${otherblog.author}">Sal</a></span><br/>
+								<span class="post-date date-post" th:text="${otherblog.date}">22 July 2017</span><span class="dot"></span>
+								</span>
+
+                                <button class="btn btn-primary post-read-more" th:onclick="'window.location.href=\'/blog/single/' + ${otherblog.id} + '\''">Read More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end post -->
+
+
+
+
+            <!-- end post -->
+
+        </div>
+    </div>
+</div>
+<!-- End Related Posts -->
+</div>
+
+
+    <footer th:replace="~{fragments/footer}">
+
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="/js/isotope.min.js"></script>
+    <script src="/js/owl-carousel.js"></script>
+
+
+    <script src="/js/popup.js"></script>
+    <script src="/js/custom.js"></script>
+</body>
+</html>

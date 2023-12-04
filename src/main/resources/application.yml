@@ -2,7 +2,7 @@ logging:
   level:
     root: info
     org.springframework: info
-    org.springframework.security: trace
+    org.springframework.security: off
     com.linefit.linefitgymapp: debug
 
 

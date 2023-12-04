@@ -81,7 +81,7 @@
       </span>
             </div>
           </div>
-          <form action="submit">
+          <form th:action="@{/view/users/details/{id}(id=${randomUser.id})}" method="get">
             <button type="submit" id="form-submit" class="main-button">View Details</button>
           </form>
         </div>

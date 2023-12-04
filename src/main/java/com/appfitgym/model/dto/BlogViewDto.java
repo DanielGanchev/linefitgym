@@ -7,8 +7,32 @@ public class BlogViewDto {
     private String title;
     private String description;
     private String author;
+
+    private Long authorId;
+
+
+
     private String date;
     private String image;
+
+    private String authorImage;
+
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public BlogViewDto setAuthorId(Long authorId) {
+        this.authorId = authorId;
+        return this;
+    }
+    public String getAuthorImage() {
+        return authorImage;
+    }
+
+    public BlogViewDto setAuthorImage(String authorImage) {
+        this.authorImage = authorImage;
+        return this;
+    }
 
     public String getTitle() {
         return title;

@@ -29,14 +29,17 @@
         <div class="row">
             <div class="col-lg-12">
                 <h6>LIne FIt Gym</h6>
-                <h2>View Member Details</h2>
-                <span>Home > <a href="#">Member Details</a></span>
+                <h2>Read Out Member Blogs</h2>
+                <span>Home > <a href="#">Blogs</a></span>
                 <div class="buttons">
                     <div class="main-button">
-                        <a href="explore.html">Explore our Gym</a>
+                        <a sec:authorize="isAuthenticated()" href="/findUsers">Find Members</a>
                     </div>
                     <div class="border-button">
-                        <a href="/users/register">Create Your Account</a>
+                        <a href="/food/input">Nutriotion Search</a>
+                    </div>
+                    <div class="border-button">
+                        <a href="/blog/create">Create Your Blog</a>
                     </div>
                 </div>
             </div>
@@ -45,22 +48,62 @@
 </div>
 
 <div id="secwrapper" >
-    <section>
-        <article>
-            <a href="#"><img class="card-img" src="/images/item-details-01.jpg" alt=""/></a>
-            <h1 class="card-header">Tortor at Vulputate Blandit</h1>
-            <p class="card-text"> Aenean quis dignissim diam. Etiam venenatis congue velit, varius gravida mi volutpat ac. Sed ut pretium dolor. Etiam tempor felis ac eros dictum quis consectetur dolor tristique. Aliquam scelerisque, odio vel luctus commodo, nisl nisl vehicula metus, ut lobortis eros sem blandit est.</p>
 
-            <button class="btn btn-link readmore">Read More</button>
-            <div class="author" >
-                <span>Author: Daniel Ganchev</span>
-                <img  src="/images/author.jpg"  style="max-width: 50px; border-radius: 50%; " alt="">
 
+<div class="row discover-items">
+        <div class="col-lg-7 ">
+            <form id="search-form" name="gs" method="get" role="search" th:action="@{/blog/search}">
+                <div class="row search-blog">
+                    <div class="col-lg-4">
+                        <fieldset>
+                            <input type="text" name="query" class="searchText" placeholder="Search..." >
+                        </fieldset>
                     </div>
+                    <div class="col-lg-3">
+                        <fieldset>
+                            <select name="field" class="form-select" aria-label="Default select example" id="chooseCategory" onchange="this.form.click()">
+                                <option selected>All Categories</option>
+                                <option value="title">Title</option>
+                                <option value="description">Description</option>
+                                <option value="author">Author</option>
+
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div class="col-lg-2">
+                        <fieldset>
+                            <button class="main-button">Search</button>
+                        </fieldset>
+                    </div>
+                </div>
+            </form>
+        </div>
+</div>
+    <section class="flex-grid">
+        <article th:each="blog : ${blogs}">
+            <a href="#"><img class="card-img" th:src="@{${blog.image}}" alt=""/></a>
+            <h1 class="card-header" th:text="${blog.title}"></h1>
+            <p class="card-text" th:text="${blog.description}"></p>
+
+            <button class="btn btn-link readmore" th:onclick="'window.location.href=\'/blog/single/' + ${blog.id} + '\''">Read More</button>
+            <div class="author" >
+
+                <span th:text="${blog.date}" class="author-date"></span>
+                <div class="author-div">
+                <span th:text="'Author: ' + ${blog.author}"></span>
+                <img  th:src="@{${blog.authorImage}}"  style="max-width: 50px; border-radius: 50%; " alt="">
+            </div>
+            </div>
         </article>
     </section>
+    <div class="search-buttons">
+    <div>
+        <button class="btn btn-primary" th:onclick="'window.location.href=\'/blog?page=' + (${blogs.number - 1}) + '\''" th:disabled="${blogs.first}">Previous</button>
+    </div>
+    <div>
+        <button class="btn btn-primary" th:onclick="'window.location.href=\'/blog?page=' + (${blogs.number + 1}) + '\''" th:disabled="${blogs.last}">Next</button>
 </div>
-
+</div>
 
 
 <footer th:replace="~{fragments/footer}">

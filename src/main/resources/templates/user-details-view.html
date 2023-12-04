@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+
+<head th:replace="~{fragments/head-user-view}">
+
+</head>
+
+<body>
+
+<!-- ***** Preloader Start ***** -->
+<div th:replace="~{fragments/preloader}">
+
+
+</div>
+<!-- ***** Preloader End ***** -->
+
+<!-- ***** Header Area Start ***** -->
+<header th:replace="~{fragments/navbar}">
+
+
+</header>
+<!-- ***** Header Area End ***** -->
+
+<div class="page-heading normal-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h6>LIne FIt Gym</h6>
+                <h2>Read Out Member Blogs</h2>
+                <span>Home > <a href="#">Blogs</a></span>
+                <div class="buttons">
+                    <div class="main-button">
+                        <a sec:authorize="isAuthenticated()" href="/findUsers">Find Members</a>
+                    </div>
+                    <div class="border-button">
+                        <a href="/food/input">Nutriotion Search</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+<div class="container emp-profile">
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img th:src="${user.profilePicturePath}" alt=""/>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <h5 th:text="${user.fullName}">
+                        Kshiti Ghelani
+                    </h5>
+                    <h6 th:text="${user.role}">
+                        Web Developer and Designer
+                    </h6>
+                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-work">
+                    <p>Blogs</p>
+                    <div th:each="blog : ${user.blogs}">
+                        <a th:href="@{/blog/single/{id}(id=${blog.id})}" th:text="${blog.title}"></a><br/>
+                    </div>
+                    <div  th:if="${user.role} == 'COACH'"  th:each="blog : ${user.blogs}">
+                        <a th:href="@{/blog/single/{id}(id=${blog.id})}" th:text="${blog.title}"></a><br/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Username</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p th:text="${user.username}">Kshiti123</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Name</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p th:text="${user.fullName}">Kshiti Ghelani</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Sex</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p th:text="${user.sex}">Web Developer and Designer</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p th:text="${user.email}">kshitighelani@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Phone</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p th:text="${user.phoneNumber}">123 456 7890</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Country</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p th:text="${user.country}">Web Developer and Designer</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>City</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p th:text="${user.city}">Web Developer and Designer</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Birth Date</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p th:text="${user.birthDate}">Web Developer and Designer</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Registered on</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p th:text="${user.createdOn}">Web Developer and Designer</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+
+    <footer th:replace="~{fragments/footer}">
+
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="/js/isotope.min.js"></script>
+    <script src="/js/owl-carousel.js"></script>
+
+
+    <script src="/js/popup.js"></script>
+    <script src="/js/custom.js"></script>
+</body>
+</html>

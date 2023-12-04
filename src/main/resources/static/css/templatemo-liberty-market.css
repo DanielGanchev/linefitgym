@@ -1634,7 +1634,12 @@ Explore Style
 .top-seller .item {
   display: flex;
   margin-bottom: 30px;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }
+
+
 
 .top-seller .item img {
   margin-right: 15px;
@@ -1643,7 +1648,7 @@ Explore Style
 
 .top-seller .item h4 {
   font-size: 20px;
-  margin-top: 12px;
+
   margin-right: 10px;
 }
 
@@ -2065,6 +2070,21 @@ Create Page Style
   font-weight: 500;
   color: #afafaf;
 }
+#contact textarea {
+  width: 100%;
+  resize: none;
+  text-align: left;
+  padding: 0px 15px;
+  background-color: #282b2f;
+  border: 1px solid #404245;
+  margin-bottom: 30px;
+  font-weight: 500;
+  color: #afafaf;
+}
+
+#contact #description {
+  height: 200px;
+}
 
 #contact input::placeholder {
   color: #afafaf;
@@ -2077,15 +2097,17 @@ Create Page Style
 }
 
 #contact input#file {
-  padding: 8px 0px;
+  padding-top: 10px;
+  padding-left: 40px;
   background-color: transparent;
   border: none;
   border-radius: 0px;
+
 }
 
 #contact button {
-  margin-top: 30px;
-  width: 100%;
+
+  width: 40%;
   text-align: center;
 }
 
@@ -2202,3 +2224,44 @@ body {
 
 }
 
+.search-buttons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 20px;
+}
+
+.search-buttons button{
+border-color: #7453fc;
+
+  background-color: #7453fc;
+
+}
+
+.input-blog{
+    width: 100%;
+    height: 640px;
+
+    padding: 0px 15px;
+display: flex;
+flex-direction: column;
+justify-content: space-evenly;
+
+  align-items: center;
+    margin-bottom: 30px;
+    font-weight: 500;
+    color: #afafaf;
+
+  text-align: center;
+}
+#contact > div > div:nth-child(2){
+  width: 60% ;
+}
+
+
+#contact > div > div:nth-child(2) > textarea  {
+
+  overflow: scroll;
+}

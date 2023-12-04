@@ -56,7 +56,9 @@ public class SecurityConfig implements WebMvcConfigurer {
 
                 .authorizeRequests(req ->
                         req.
-                                requestMatchers("/resources/**", "/static/**","/","/users/login","users/register/**","/countries","/api/cities/**","https://unpkg.com/swiper@7/swiper-bundle.min.css","/users/login-error","/food/**", "/register/verifyEmail","/gallery/**")
+                                requestMatchers("/resources/**", "/static/**","/","/users/login","users/register/**","/countries","/api/cities/**"
+                                        ,"https://unpkg.com/swiper@7/swiper-bundle.min.css","/users/login-error"
+                                        ,"/food/**", "/register/verifyEmail","/gallery/**","/blog/**")
                                 .permitAll()
                                 .requestMatchers("/js/**", "/css/**", "/images/**", "/webfonts/**", "/jquery/**", "/bootstrap/**")
                                 .permitAll()

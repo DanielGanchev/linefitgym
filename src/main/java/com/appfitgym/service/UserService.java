@@ -21,4 +21,9 @@ public interface UserService {
     void saveUserVerificationToken(UserEntity theUser, String verificationToken);
 
     String validateToken(String theToken);
+
+    UserDetailsViewDto getUserViewDetails(Long id);
+
+
+
 }

@@ -7,7 +7,9 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +33,10 @@ public interface UserRepository extends JpaRepository<UserEntity, Long>, JpaSpec
 
     @Query("SELECT u FROM UserEntity u LEFT JOIN u.roles r LEFT JOIN u.fitnessPrograms fp LEFT JOIN u.dietPrograms dp WHERE r.role = 'COACH' GROUP BY u ORDER BY COUNT(fp) + COUNT(dp) DESC limit 12")
     List<UserEntity> findTopCoaches();
+
+
+    @Query("Select u from UserEntity u left join u.roles r where r.role != 'ADMIN' and u.id = :id")
+    Optional<UserEntity> findByIdNotAdmin(@RequestParam("id") Long id);
 
 
 }

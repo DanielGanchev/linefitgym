@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import java.util.Calendar;
@@ -187,4 +188,34 @@ public class UserServiceImpl implements UserService {
     userRepository.save(user);
     return "valid";
   }
+
+  @Override
+  public UserDetailsViewDto getUserViewDetails(Long id) {
+    return userRepository.findByIdNotAdmin(id).map(UserServiceImpl::mapAsUserDetailsViewDto).orElseThrow();
+
+
+  }
+
+    private static UserDetailsViewDto mapAsUserDetailsViewDto(UserEntity userEntity) {
+
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+
+        return new UserDetailsViewDto()
+            .setId(userEntity.getId())
+            .setUsername(userEntity.getUsername())
+                .setFullName(userEntity.getFirstName() + " " + userEntity.getLastName())
+
+                .setBirthDate( userEntity.getBirthDate().format(formatter))
+                .setSex(userEntity.getSexEnum().toString())
+            .setPhoneNumber(userEntity.getPhoneNumber())
+            .setCity(userEntity.getCity().getName())
+            .setCountry(userEntity.getCountry().getName())
+            .setProfilePicturePath(userEntity.getProfilePicture())
+            .setCreatedOn(userEntity.getCreatedOn().format(formatter))
+                .setEmail(userEntity.getEmail())
+                .setRole(userEntity.getRoles().get(0).getRole().name())
+                .setBlogNumber(userEntity.getBlogs().size())
+                .setBlogs(userEntity.getBlogs().stream().map(BlogServiceImpl::mapBlogToBlogViewDto).toList());
+    }
 }
