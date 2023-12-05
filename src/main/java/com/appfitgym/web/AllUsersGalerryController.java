@@ -2,8 +2,8 @@ package com.appfitgym.web;
 
 import com.appfitgym.model.dto.GalleryUserDetailsDto;
 import com.appfitgym.service.impl.AllUsersGalleryService;
+import java.util.List;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/findUsers")

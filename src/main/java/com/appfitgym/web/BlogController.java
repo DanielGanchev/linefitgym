@@ -1,15 +1,21 @@
 package com.appfitgym.web;
 
+import com.appfitgym.model.dto.BlogCreateDto;
 import com.appfitgym.model.dto.BlogViewDto;
 import com.appfitgym.service.BlogService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -55,14 +61,28 @@ public class BlogController {
 
     @PreAuthorize("#userId == principal.getId()")
     @GetMapping("/create/{userId}")
-    public ModelAndView createBlog(@PathVariable("userId") Long userId, Model model){
+    public ModelAndView createBlog(@PathVariable("userId") Long userId, @ModelAttribute("blogViewDto") BlogCreateDto blogViewDto, Model model){
         model.addAttribute("userId", userId);
 
 
         return new ModelAndView("create");
     }
 
+    @PostMapping("/create/save/{userId}")
+    public ModelAndView saveBlog(@PathVariable("userId") Long userId, @ModelAttribute("blogViewDto") @Valid BlogCreateDto blogViewDto, BindingResult bindingResult) throws IOException {
+        if (bindingResult.hasErrors()){
+            return new ModelAndView("create");
+        }
 
+
+        blogViewDto.setUserId(userId);
+
+
+
+       blogService.saveBlog(blogViewDto);
+
+        return new ModelAndView("redirect:/blog");
+    }
 
 
 

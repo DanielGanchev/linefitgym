@@ -22,6 +22,17 @@ public class BlogCreateDto {
     @ValidFile
     private MultipartFile image;
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public BlogCreateDto setUserId(Long userId) {
+        this.userId = userId;
+        return this;
+    }
+
+    private Long userId;
+
     public String getTitle() {
         return title;
     }

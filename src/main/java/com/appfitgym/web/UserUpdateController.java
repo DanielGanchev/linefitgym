@@ -1,28 +1,23 @@
 package com.appfitgym.web;
 
-import com.appfitgym.model.dto.CustomerUserDetails;
 import com.appfitgym.model.dto.UserUpdateValidationDto;
-import com.appfitgym.model.dto.country.CityLoadDTO;
 import com.appfitgym.model.dto.country.CountryLoadDto;
 import com.appfitgym.model.enums.SexEnum;
 import com.appfitgym.model.enums.UserRoleEnum;
 import com.appfitgym.service.CountryService;
 import com.appfitgym.service.UserService;
 import jakarta.validation.Valid;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/users")
@@ -54,34 +49,36 @@ public class UserUpdateController {
     return countryService.getAllCountries();
   }
 
-
-
   @GetMapping("/update/{userId}")
   @PreAuthorize("#userId == principal.getId()")
   public ModelAndView updateUser(@PathVariable("userId") Long userId, Model model) {
 
-
     if (!model.containsAttribute("userUpdate")) {
-      UserUpdateValidationDto userUpdate = userService.getUserDetails(userId)
-              .orElseThrow(() -> new UsernameNotFoundException("User with name " + userId + " not found!"));
+      UserUpdateValidationDto userUpdate =
+          userService
+              .getUserDetails(userId)
+              .orElseThrow(
+                  () -> new UsernameNotFoundException("User with name " + userId + " not found!"));
       model.addAttribute("userUpdate", userUpdate);
     }
     return new ModelAndView("user-details");
   }
 
-
   @PatchMapping("/update/{userId}")
   public ModelAndView updateUser(
-          @PathVariable("userId") Long userId,
-          @ModelAttribute("userUpdate") @Valid UserUpdateValidationDto userUpdate,
-          BindingResult result,
-       RedirectAttributes redirectAttributes   ) throws IOException {
+      @PathVariable("userId") Long userId,
+      @ModelAttribute("userUpdate") @Valid UserUpdateValidationDto userUpdate,
+      BindingResult result,
+      RedirectAttributes redirectAttributes)
+      throws IOException {
 
     userUpdate.setId(userId);
-    userUpdate.setProfilePicturePath(userService.getUserDetails(userId).get().getProfilePicturePath());
+    userUpdate.setProfilePicturePath(
+        userService.getUserDetails(userId).get().getProfilePicturePath());
 
     if (result.hasErrors()) {
-      redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userUpdate", result);
+      redirectAttributes.addFlashAttribute(
+          "org.springframework.validation.BindingResult.userUpdate", result);
       redirectAttributes.addFlashAttribute("userUpdate", userUpdate);
       return new ModelAndView("redirect:/users/update/" + userId);
     }
@@ -90,6 +87,4 @@ public class UserUpdateController {
 
     return new ModelAndView("redirect:/users/update/" + userId);
   }
-
-
 }

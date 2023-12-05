@@ -12,23 +12,20 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/view/users")
 public class UserDetailsController {
 
-    private final UserService userService;
+  private final UserService userService;
 
-    public UserDetailsController(UserService userService) {
-        this.userService = userService;
-    }
+  public UserDetailsController(UserService userService) {
+    this.userService = userService;
+  }
 
-    @GetMapping("/details/{id}")
-    public ModelAndView details(@PathVariable Long id) {
-        UserDetailsViewDto userDetailsViewDto= userService.getUserViewDetails(id);
+  @GetMapping("/details/{id}")
+  public ModelAndView details(@PathVariable Long id) {
+    UserDetailsViewDto userDetailsViewDto = userService.getUserViewDetails(id);
 
+    ModelAndView modelAndView = new ModelAndView("user-details-view");
 
-        ModelAndView modelAndView = new ModelAndView("user-details-view");
+    modelAndView.addObject("user", userDetailsViewDto);
 
-
-        modelAndView.addObject("user", userDetailsViewDto);
-
-        return modelAndView;
-    }
-
+    return modelAndView;
+  }
 }

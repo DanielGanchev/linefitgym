@@ -5,6 +5,7 @@ import com.appfitgym.model.entities.*;
 import com.appfitgym.model.entities.country.City;
 import com.appfitgym.model.entities.country.Country;
 import com.appfitgym.model.entities.mail.VerificationToken;
+import com.appfitgym.model.enums.UserRoleEnum;
 import com.appfitgym.repository.*;
 import com.appfitgym.service.CloudinaryService;
 import com.appfitgym.service.UserService;
@@ -74,7 +75,9 @@ public class UserServiceImpl implements UserService {
 
     Country country = city.getCountry();
 
+
     UserRole userRole = userRoleRepository.findByRole(userRegistrationDto.role()).orElseThrow();
+
 
     List<UserRole> roles = new ArrayList<>();
     roles.add(userRole);

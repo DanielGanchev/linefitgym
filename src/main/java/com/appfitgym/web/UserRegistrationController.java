@@ -21,7 +21,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RestController
 @RequestMapping("/users")
@@ -47,8 +46,10 @@ public class UserRegistrationController {
   }
 
   @GetMapping("/register")
- public ModelAndView register(@ModelAttribute("userRegisterBindingModel") UserRegistrationDto userRegistrationDto, Model model) {
-return new ModelAndView("register");
+  public ModelAndView register(
+      @ModelAttribute("userRegisterBindingModel") UserRegistrationDto userRegistrationDto,
+      Model model) {
+    return new ModelAndView("register");
   }
 
   @ModelAttribute("sexEnums")
@@ -71,15 +72,15 @@ return new ModelAndView("register");
 
   @PostMapping("/register")
   public ModelAndView register(
-          @ModelAttribute("userRegisterBindingModel") @Valid UserRegistrationDto userRegistrationDto,BindingResult bindingResult,
-          final HttpServletRequest request
-          )
-          throws IOException {
+      @ModelAttribute("userRegisterBindingModel") @Valid UserRegistrationDto userRegistrationDto,
+      BindingResult bindingResult,
+      final HttpServletRequest request)
+      throws IOException {
 
-    if (bindingResult.hasErrors()){
+    if (bindingResult.hasErrors()) {
 
-      return  new ModelAndView("register");
-  }
+      return new ModelAndView("register");
+    }
 
     UserEntity savedUser = userService.register(userRegistrationDto);
 
@@ -99,7 +100,7 @@ return new ModelAndView("register");
   }
 
   @GetMapping("/register/verifyEmail")
-  public ModelAndView verifyEmail (@RequestParam("token") String token) {
+  public ModelAndView verifyEmail(@RequestParam("token") String token) {
     VerificationToken theToken = tokenRepository.findByToken(token);
     ModelAndView modelAndView = new ModelAndView();
     if (theToken.getUser().isActive()) {
