@@ -35,6 +35,9 @@
             <p th:if="${bad_credentials}" class="errors alert alert-danger">
                 Invalid username or password.
             </p>
+            <p th:if="${blocked}" class="errors alert alert-danger">
+                You have exceeded the maximum number of login attempts. Please try again later.
+            </p>
 
             <input type="text" placeholder="Username" name="username" >
             <input type="password" placeholder="Password" name="password">

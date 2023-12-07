@@ -2,12 +2,11 @@ package com.appfitgym.model.dto;
 
 import com.appfitgym.model.enums.SexEnum;
 import com.appfitgym.model.enums.UserRoleEnum;
-import jakarta.mail.Multipart;
-import jakarta.persistence.Column;
+import com.appfitgym.validation.*;
 import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.web.multipart.MultipartFile;
-import validation.*;
+
 
 import java.time.LocalDate;
 

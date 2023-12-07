@@ -100,5 +100,10 @@ public class BlogServiceImpl  implements BlogService {
                 .setAuthor(userEntity.getFirstName() + " " + userEntity.getLastName());
     }
 
+    @Override
+    public void deleteBlog(Long id) {
+        blogRepository.deleteById(id);
+    }
+
 
 }

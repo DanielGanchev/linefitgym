@@ -23,4 +23,6 @@ public interface BlogService {
 
 
     Blog saveBlog(BlogCreateDto blogViewDto) throws IOException;
+
+    void deleteBlog(Long id);
 }

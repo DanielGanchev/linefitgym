@@ -66,7 +66,15 @@
                         <a class="link-dark" th:href="@{/view/users/details/{id}(id=${blog.authorId})}" th:text="${blog.author}">Sal</a><a class="btn follow" th:href="@{/view/users/details/{id}(id=${blog.authorId})}">Details</a>
                         </div>
                         <span class="post-date" th:text="${blog.date}">22 July 2017</span><span class="dot"></span>
+                        <div th:if="${userId == blog.authorId}">
+                        <form th:action="@{'/blog/delete/' + ${blog.id}}" th:method="DELETE">
+                            <input type="hidden" name="_method" value="delete" />
+                            <button class="btn btn-primary btn-delete" type="submit">Delete Blog</button>
+                        </form>
                     </div>
+                    </div>
+
+
                 </div>
                 <!-- End Top Menta -->
 

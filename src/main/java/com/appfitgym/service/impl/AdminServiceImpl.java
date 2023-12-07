@@ -61,7 +61,7 @@ public AdminServiceImpl(UserRepository userRepository, UserRoleRepository userRo
 
     }
 
-    private static String statusOfUser(UserEntity userEntity,VerificationTokenRepository verificationTokenRepository) {
+    public static String statusOfUser(UserEntity userEntity, VerificationTokenRepository verificationTokenRepository) {
         if (userEntity.isActive()) {
             return "approved";
 

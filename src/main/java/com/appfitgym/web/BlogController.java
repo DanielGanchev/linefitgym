@@ -84,6 +84,12 @@ public class BlogController {
         return new ModelAndView("redirect:/blog");
     }
 
+    @DeleteMapping("/delete/{id}")
+    public String deleteBlog(@PathVariable Long id) {
+        blogService.deleteBlog(id);
+        return "redirect:/blog";
+    }
+
 
 
 }

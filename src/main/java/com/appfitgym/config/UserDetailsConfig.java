@@ -1,5 +1,6 @@
 package com.appfitgym.config;
 
+import com.appfitgym.interceptor.RateLimitService;
 import com.appfitgym.repository.UserRepository;
 import com.appfitgym.service.impl.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public class UserDetailsConfig {
 
     @Bean
-    public UserDetailsService userDetailsService(UserRepository userRepository) {
-        return new UserDetailsServiceImpl(userRepository);
+    public UserDetailsService userDetailsService(UserRepository userRepository, RateLimitService rateLimitService) {
+        return new UserDetailsServiceImpl(userRepository, rateLimitService);
     }
 }

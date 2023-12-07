@@ -25,5 +25,5 @@ public interface UserService {
     UserDetailsViewDto getUserViewDetails(Long id);
 
 
-
+    void deleteExpiredTokens();
 }

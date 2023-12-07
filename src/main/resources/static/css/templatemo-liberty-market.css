@@ -2265,3 +2265,28 @@ justify-content: space-evenly;
 
   overflow: scroll;
 }
+
+.btn-delete{
+    background-color: #7453fc;
+    border-color: #7453fc;
+    color: white;
+
+}
+
+#typing-text {
+  border-right: .15em solid black;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 20px;
+  animation: typing 4s steps(30, end), blink-caret .5s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: black; }
+}

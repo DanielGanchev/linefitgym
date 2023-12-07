@@ -12,6 +12,7 @@ import com.appfitgym.service.GalleryService;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 
+import org.modelmapper.TypeMap;
 import org.modelmapper.spi.MappingContext;
 import org.springframework.stereotype.Service;
 
@@ -33,8 +34,9 @@ public class GalleryServiceImpl implements GalleryService {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
 
-        modelMapper.typeMap(UserEntity.class, RandomUserDto.class)
-                .addMappings(mapper -> {
+        TypeMap<UserEntity, RandomUserDto> typeMap = modelMapper.createTypeMap(UserEntity.class, RandomUserDto.class);
+
+typeMap.addMappings(mapper -> {
                     mapper.using(toAge).map(UserEntity::getBirthDate, RandomUserDto::setAge);
                     mapper.using(toProgramsCount).map(src -> src, RandomUserDto::setProgramsCount);
                     mapper.using(toCountryName).map(UserEntity::getCountry, RandomUserDto::setCountry);

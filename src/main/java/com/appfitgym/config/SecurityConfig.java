@@ -1,6 +1,9 @@
 package com.appfitgym.config;
 
 
+
+import com.appfitgym.interceptor.RateLimitInterceptor;
+import com.appfitgym.interceptor.RateLimitService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -33,13 +37,21 @@ public class SecurityConfig implements WebMvcConfigurer {
 
     private final UserDetailsService userDetailsService;
 
+    private final RateLimitService rateLimitService;
+
+    private final RateLimitInterceptor rateLimitInterceptor;
 
 
 
 
-    public SecurityConfig(@Value("${spring.remember.me.key}") String rememberMeKey, UserDetailsService userDetailsService){
+
+
+
+    public SecurityConfig(@Value("${spring.remember.me.key}") String rememberMeKey, UserDetailsService userDetailsService, RateLimitService rateLimitService, RateLimitInterceptor rateLimitInterceptor){
         this.rememberMeKey = rememberMeKey;
         this.userDetailsService = userDetailsService;
+        this.rateLimitService = rateLimitService;
+        this.rateLimitInterceptor = rateLimitInterceptor;
     }
 
     @Bean
@@ -49,10 +61,12 @@ public class SecurityConfig implements WebMvcConfigurer {
 
 
 
+
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http.csrf(AbstractHttpConfigurer::disable)
+        http
 
                 .authorizeRequests(req ->
                         req.
@@ -66,12 +80,14 @@ public class SecurityConfig implements WebMvcConfigurer {
                                 .permitAll()
                                 .requestMatchers("/error").permitAll()
                                 .anyRequest().authenticated())
+
                 .formLogin(formLogin ->
                         formLogin.loginPage("/users/login")
                                 .usernameParameter("username")
                                 .passwordParameter("password")
                                 .defaultSuccessUrl("/", true)
                                 .failureForwardUrl("/users/login-error")
+
                 ).logout(logout ->
                         logout.logoutUrl("/users/logout")
                                 .logoutSuccessUrl("/")

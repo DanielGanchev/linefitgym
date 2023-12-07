@@ -1,10 +1,13 @@
 package com.appfitgym.model.dto;
 
 import com.appfitgym.model.enums.SexEnum;
+import com.appfitgym.validation.OverSixteen;
+import com.appfitgym.validation.UniqueUserOrTheSame;
+import com.appfitgym.validation.ValidFile;
 import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.web.multipart.MultipartFile;
-import validation.*;
+
 
 import java.time.LocalDate;
 

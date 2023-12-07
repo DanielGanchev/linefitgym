@@ -1,9 +1,6 @@
 package com.appfitgym.model.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -13,6 +10,8 @@ public class Blog extends BaseEntity {
 
 
     private String title;
+
+    @Column(columnDefinition = "TEXT")
     private String description;
     private String author;
 

@@ -199,7 +199,14 @@ public class UserServiceImpl implements UserService {
 
   }
 
-    private static UserDetailsViewDto mapAsUserDetailsViewDto(UserEntity userEntity) {
+  @Override
+  public void deleteExpiredTokens() {
+    LocalDateTime expirationTime = LocalDateTime.now().minusHours(24);
+    tokenRepository.deleteVerificationTokenByExpirationTimeBefore(expirationTime);
+
+  }
+
+  private static UserDetailsViewDto mapAsUserDetailsViewDto(UserEntity userEntity) {
 
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 

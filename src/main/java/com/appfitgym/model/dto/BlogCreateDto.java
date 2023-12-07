@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.web.multipart.MultipartFile;
-import validation.ValidFile;
+import com.appfitgym.validation.ValidFile;
 
 public class BlogCreateDto {
 
@@ -15,6 +15,7 @@ public class BlogCreateDto {
     private String title;
 
     @NotNull
+    @NotEmpty(message = "Description cannot be empty!")
     @Column(columnDefinition = "TEXT")
     private String description;
 

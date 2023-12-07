@@ -64,8 +64,8 @@ article{
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 5;
-    white-space: pre-wrap;
+    -webkit-line-clamp: 15;
+
 
 }
 
@@ -191,4 +191,15 @@ section.flex-grid article {
     flex: 0 0 calc(33.3333% - 40px);
     gap: 20px;
     box-sizing: border-box;
+}
+
+.btn-readmore-contain {
+    margin: 30px auto;
+}
+
+.card-img {
+    width: 100%;
+    min-height: 607px;
+    object-fit: cover;
+
 }

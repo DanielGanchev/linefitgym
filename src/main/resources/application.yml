@@ -37,9 +37,9 @@ spring:
 
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    password: ${MYSQL_PASSWORD:1234}
+    password: ${MYSQL_PASSWORD}
     url: jdbc:mysql://localhost:3306/onlinefitgym_db?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
-    username: ${MYSQL_USER:root}
+    username: ${MYSQL_USER}
   jpa:
     hibernate:
       ddl-auto: update

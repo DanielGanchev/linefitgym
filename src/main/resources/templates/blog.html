@@ -81,18 +81,21 @@
 </div>
     <section class="flex-grid">
         <article th:each="blog : ${blogs}">
+
             <a href="#"><img class="card-img" th:src="@{${blog.image}}" alt=""/></a>
             <h1 class="card-header" th:text="${blog.title}"></h1>
             <p class="card-text" th:text="${blog.description}"></p>
-
-            <button class="btn btn-link readmore" th:onclick="'window.location.href=\'/blog/single/' + ${blog.id} + '\''">Read More</button>
-            <div class="author" >
-
-                <span th:text="${blog.date}" class="author-date"></span>
-                <div class="author-div">
-                <span th:text="'Author: ' + ${blog.author}"></span>
-                <img  th:src="@{${blog.authorImage}}"  style="max-width: 50px; border-radius: 50%; " alt="">
-            </div>
+            <div class="bottom-elements">
+                <div class="btn-readmore-contain" style="display: flex; justify-content: center; align-items: center; width: 100%;">
+                    <button class="btn btn-link readmore" th:onclick="'window.location.href=\'/blog/single/' + ${blog.id} + '\''">Read More</button>
+                </div>
+                <div class="author">
+                    <span th:text="${blog.date}" class="author-date"></span>
+                    <div class="author-div">
+                        <span th:text="'Author: ' + ${blog.author}"></span>
+                        <img th:src="@{${blog.authorImage}}" style="max-width: 50px; border-radius: 50%;" alt="">
+                    </div>
+                </div>
             </div>
         </article>
     </section>

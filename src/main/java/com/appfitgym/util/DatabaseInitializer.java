@@ -6,7 +6,7 @@ import com.appfitgym.repository.CityRepository;
 import com.appfitgym.repository.CountryRepository;
 import com.appfitgym.repository.UserRepository;
 import com.appfitgym.repository.UserRoleRepository;
-import com.appfitgym.service.impl.FetchServices.GeoService;
+import com.appfitgym.service.impl.fetchServices.GeoService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
