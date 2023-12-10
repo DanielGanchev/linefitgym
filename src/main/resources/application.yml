@@ -9,7 +9,7 @@ logging:
 LineFitGymApp:
   default:
     admin:
-      pass: ${DEFAULT_ADMIN_PASS:topsecret}
+      pass: ${DEFAULT_ADMIN_PASS}
 
 cloudinary:
   cloud_name: danjpzd8z
@@ -27,13 +27,15 @@ spring.mail:
           auth: true
 
 
+rapidapi:
+  key: ${RAPIDAPI_KEY}
 
 spring:
   application:
     name: LineFitGymApp
   remember:
     me:
-      key: ${REMEBER_ME_KEY:topsecret}
+      key: ${REMEBER_ME_KEY}
 
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
@@ -60,11 +62,11 @@ spring:
     mode: HTML
     encoding: UTF-8
   # change load path to resource folder instead of /target
-    prefix: file:src/main/resources/templates/
+    prefix: classpath:/templates/
 
   web:
     resources:
-      static-locations: file:src/main/resources/static/
+      static-locations: classpath:/static/
       cache:
         period: 0
   servlet:

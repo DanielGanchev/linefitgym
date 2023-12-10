@@ -1,7 +1,7 @@
 INSERT users (id, birth_date, created_on, email, first_name, is_active, last_name, password, phone_number,
               profile_picture, sex_enum, username, city_id, country_id)
 VALUES (1, '1989-11-10', '2023-11-28 15:53:23.608344', 'dani.ganchev1989@gmail.com', 'Daniel', 1, 'Ganchev',
-        '6bf5a19e471a7eae489fa60cf61afd0d5db0e0c9df78faccb54c62e70f66f065740952d62ce25b1a6658a4edb94ee0cd',
+        'bb82d6680decf658a89f3bb9fe45a453b6c1737d50742de4c2033005ce69682422bea582b59c564bc10eccdf23b58484',
         '0898718488', 'http://res.cloudinary.com/danjpzd8z/image/upload/v1701434763/rjq0ugfgtdiqazleupla.jpg', 'MALE',
         'admin', 7537, 30);
 INSERT users (id, birth_date, created_on, email, first_name, is_active, last_name, password, phone_number,

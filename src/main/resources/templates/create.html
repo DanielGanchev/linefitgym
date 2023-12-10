@@ -89,7 +89,7 @@
               </div>
               <div class="col-lg-8">
                 <fieldset>
-                  <button type="submit" id="form-submit" class="orange-button">Submit Your Applying</button>
+                  <button type="submit" id="form-submit" class="orange-button submit-button">Submit Your Applying</button>
                 </fieldset>
               </div>
             </div>
@@ -115,5 +115,16 @@
 
   <script src="/js/popup.js"></script>
   <script src="/js/custom.js"></script>
+  <script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+
+      document.getElementById('form-submit').disabled = true;
+
+
+      document.getElementById('preloader').style.display = 'block';
+
+      event.preventDefault();
+    });
+  </script>
   </body>
 </html>

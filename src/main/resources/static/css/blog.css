@@ -203,3 +203,14 @@ section.flex-grid article {
     object-fit: cover;
 
 }
+
+@media (max-width: 450px) {
+
+
+    section.flex-grid {
+        display: block;
+    }
+    article {
+        width: 100%;
+    }
+}
