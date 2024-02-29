@@ -1,7 +1,7 @@
 package com.appfitgym.repository;
 
 
-import com.appfitgym.model.dto.countryAndFood.CityLoadDTO;
+import com.appfitgym.model.dto.country.CityLoadDTO;
 import com.appfitgym.model.entities.country.City;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,10 +17,10 @@ public interface CityRepository extends JpaRepository<City, Long> {
 
 
 
-    @Query("SELECT new com.appfitgym.model.dto.countryAndFood.CityLoadDTO(c.id, c.name) FROM City c WHERE c.country.name = :countryName")
+    @Query("SELECT new com.appfitgym.model.dto.country.CityLoadDTO(c.id, c.name) FROM City c WHERE c.country.name = :countryName")
     List<CityLoadDTO> getCitiesByCountryName(@Param("countryName") String countryName);
 
 
-    @Query("SELECT new com.appfitgym.model.dto.countryAndFood.CityLoadDTO(c.id, c.name) FROM City c WHERE c.country.id = :countryId")
+    @Query("SELECT new com.appfitgym.model.dto.country.CityLoadDTO(c.id, c.name) FROM City c WHERE c.country.id = :countryId")
     List<CityLoadDTO> getCitiesByCountryId(@Param("countryId") Long countryId);
 }

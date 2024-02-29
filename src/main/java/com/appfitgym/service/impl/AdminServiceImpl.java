@@ -89,9 +89,6 @@ public AdminServiceImpl(UserRepository userRepository, UserRoleRepository userRo
    @Override
     @Transactional
     public void deleteUser(Long userId) {
-       UserEntity user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
-
-       verificationTokenRepository.deleteByUser(user);
         userRepository.deleteById(userId);
     }
 

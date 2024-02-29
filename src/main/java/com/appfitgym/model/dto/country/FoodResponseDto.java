@@ -1,4 +1,6 @@
-package com.appfitgym.model.dto.countryAndFood;
+package com.appfitgym.model.dto.country;
+
+import com.appfitgym.model.dto.country.CountryLoadDto;
 
 public  class FoodResponseDto {
     private String name;

@@ -2304,19 +2304,12 @@ justify-content: space-evenly;
 }
 
 
-@media (max-width: 1400px) {
+
+@media (max-width: 575px) {
   .left-img > img {
-    width: 180px;
+    width: 45vw;
 
   }
 }
-
-@media (max-width: 764px) {
-  .left-img > img {
-    width: 162px;
-    height: 242px;
-  }
-}
-
 
 

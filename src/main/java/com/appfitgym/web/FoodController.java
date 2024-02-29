@@ -1,6 +1,6 @@
 package com.appfitgym.web;
 
-import com.appfitgym.model.dto.countryAndFood.FoodResponseDto;
+import com.appfitgym.model.dto.country.FoodResponseDto;
 import com.appfitgym.service.impl.fetchServices.DietegramApiService;
 import java.util.List;
 import org.springframework.ui.Model;
