@@ -1,7 +1,7 @@
 package com.appfitgym.service.impl.fetchServices;
 
-import com.appfitgym.model.dto.country.FoodResponse;
-import com.appfitgym.model.dto.country.FoodResponseDto;
+import com.appfitgym.model.dto.countryAndFood.FoodResponse;
+import com.appfitgym.model.dto.countryAndFood.FoodResponseDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

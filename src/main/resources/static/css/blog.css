@@ -204,7 +204,7 @@ section.flex-grid article {
 
 }
 
-@media (max-width: 450px) {
+@media (max-width: 767px) {
 
 
     section.flex-grid {

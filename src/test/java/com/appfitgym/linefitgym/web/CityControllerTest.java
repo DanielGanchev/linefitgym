@@ -1,6 +1,6 @@
 package com.appfitgym.linefitgym.web;
 
-import com.appfitgym.model.dto.country.CityLoadDTO;
+import com.appfitgym.model.dto.countryAndFood.CityLoadDTO;
 import com.appfitgym.service.CountryService;
 import com.appfitgym.web.CityController;
 import org.junit.jupiter.api.BeforeEach;

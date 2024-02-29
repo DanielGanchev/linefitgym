@@ -1,7 +1,7 @@
 package com.appfitgym.service;
 
-import com.appfitgym.model.dto.country.CityLoadDTO;
-import com.appfitgym.model.dto.country.CountryLoadDto;
+import com.appfitgym.model.dto.countryAndFood.CityLoadDTO;
+import com.appfitgym.model.dto.countryAndFood.CountryLoadDto;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.appfitgym.linefitgym.web;
 
 import com.appfitgym.model.dto.UserUpdateValidationDto;
-import com.appfitgym.model.dto.country.CountryLoadDto;
+import com.appfitgym.model.dto.countryAndFood.CountryLoadDto;
 import com.appfitgym.model.enums.SexEnum;
 import com.appfitgym.model.enums.UserRoleEnum;
 import com.appfitgym.service.CountryService;

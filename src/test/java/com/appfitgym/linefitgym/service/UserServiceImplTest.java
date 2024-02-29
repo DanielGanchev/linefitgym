@@ -34,10 +34,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -308,15 +305,13 @@ public class UserServiceImplTest {
     @Test
     public void testDeleteExpiredTokens() {
 
-        LocalDateTime twentyFiveHoursAgo = LocalDateTime.now().minusHours(25);
-        LocalDateTime twentyThreeHoursAgo = LocalDateTime.now().minusHours(23);
-
+        Date twentyFiveHoursAgo = java.sql.Timestamp.valueOf(LocalDateTime.now().minusHours(25));
+        Date twentyThreeHoursAgo = java.sql.Timestamp.valueOf(LocalDateTime.now().minusHours(23));
 
         userService.deleteExpiredTokens();
 
-
-        verify(tokenRepository, times(1)).deleteVerificationTokenByExpirationTimeBefore(argThat(dateTime ->
-                dateTime.isAfter(twentyFiveHoursAgo) && dateTime.isBefore(twentyThreeHoursAgo)));
+        verify(tokenRepository, times(1)).deleteVerificationTokenByExpirationTimeBefore(argThat(date ->
+                date.after(twentyFiveHoursAgo) && date.before(twentyThreeHoursAgo)));
     }
 
 }

@@ -1,4 +1,4 @@
-package com.appfitgym.model.dto.country;
+package com.appfitgym.model.dto.countryAndFood;
 
 public class CityDTO {
     private String name;

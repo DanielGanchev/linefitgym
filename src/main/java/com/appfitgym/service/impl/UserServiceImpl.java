@@ -5,12 +5,16 @@ import com.appfitgym.model.entities.*;
 import com.appfitgym.model.entities.country.City;
 import com.appfitgym.model.entities.country.Country;
 import com.appfitgym.model.entities.mail.VerificationToken;
-import com.appfitgym.model.enums.UserRoleEnum;
 import com.appfitgym.repository.*;
 import com.appfitgym.service.CloudinaryService;
 import com.appfitgym.service.UserService;
-
 import com.cloudinary.Cloudinary;
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,15 +22,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-
-import java.util.Calendar;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -202,9 +197,12 @@ public class UserServiceImpl implements UserService {
   @Override
   public void deleteExpiredTokens() {
     LocalDateTime expirationTime = LocalDateTime.now().minusHours(24);
-    tokenRepository.deleteVerificationTokenByExpirationTimeBefore(expirationTime);
+    Date expirationDate = Timestamp.valueOf(expirationTime);
+    tokenRepository.deleteVerificationTokenByExpirationTimeBefore(expirationDate);
 
   }
+
+
 
   private static UserDetailsViewDto mapAsUserDetailsViewDto(UserEntity userEntity) {
 

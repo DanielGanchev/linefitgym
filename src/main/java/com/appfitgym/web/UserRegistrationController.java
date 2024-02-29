@@ -2,7 +2,7 @@ package com.appfitgym.web;
 
 import com.appfitgym.event.RegistrationCompleteEvent;
 import com.appfitgym.model.dto.*;
-import com.appfitgym.model.dto.country.CountryLoadDto;
+import com.appfitgym.model.dto.countryAndFood.CountryLoadDto;
 import com.appfitgym.model.entities.UserEntity;
 import com.appfitgym.model.entities.mail.VerificationToken;
 import com.appfitgym.model.enums.SexEnum;
