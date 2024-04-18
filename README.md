@@ -68,10 +68,12 @@ API Endpoints
 Details of the endpoints available in the application:
 
 AdminController: Manages administrative functions.
+
 GET /admin
 GET /admin/all
 GET /admin/search
 DELETE /admin/delete
+
 UserControllers: Handles user interactions.
 GET /users/login
 GET /users/login-error
@@ -80,6 +82,7 @@ GET /users/register
 POST /users/register
 POST /users/register/verifyEmail
 GET /users/update/{userId}
+
 Additional Controllers: For blogs, food information, and more.
 GET /blog
 POST /blog/create/{userId}
